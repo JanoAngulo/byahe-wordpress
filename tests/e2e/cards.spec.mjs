@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const PAGES = ['/components.html', '/', '/product.html', '/pricing.html'];
+const PAGES = ['/components.html', '/', '/product.html', '/pricing.html', '/solutions.html'];
 const WIDTHS = [360, 768, 1024, 1280];
 const CARD = '.card-hard, .tier, .ui-mockup, .faq details';
 const MIN_CARD_WIDTH = 260;

@@ -132,3 +132,26 @@ test('every product screen is a white card as wide as its column', async ({ page
     expect(Math.abs(mockWidth - textCol), id).toBeLessThan(2);
   }
 });
+
+test('invoice line items keep names left-aligned next to the quantity', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'desktop only');
+  await page.goto('/product.html');
+  const rows = page.locator('.ui-mockup--invoice .ui-lines .ui-row');
+  for (const row of await rows.all()) {
+    const gap = await row.evaluate((el) => {
+      const textRect = (node) => { const r = document.createRange(); r.selectNodeContents(node); return r.getBoundingClientRect(); };
+      const qty = textRect(el.children[0]);
+      const name = textRect(el.children[1]);
+      return name.left - qty.right;
+    });
+    expect(gap).toBeLessThan(32);
+  }
+});
+
+test('Cubao headlines use real spaces, not wide non-breaking ones', async ({ page }) => {
+  for (const path of ['/', '/product.html', '/pricing.html', '/solutions.html']) {
+    await page.goto(path);
+    const text = await page.locator('h1').evaluate((el) => el.textContent);
+    expect(text, path).not.toContain('\u00a0');
+  }
+});

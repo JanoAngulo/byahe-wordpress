@@ -546,6 +546,7 @@
   .ui-btn {
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
     padding: 0.25rem 0.75rem;
     border: 2px solid var(--color-navy);
     border-radius: var(--radius-pill);
@@ -949,4 +950,49 @@
     }
     .steps.cards-3 > li::before { grid-row: 1 / span 2; margin-bottom: 0; }
   }
+}
+
+@layer components {
+  .ui-subhead { margin-top: 1rem; padding-top: 0.75rem; border-top: 2px solid var(--color-navy); }
+  .ui-mockup .ui-stats + .ui-lines { margin-top: 1rem; }
+  .ui-mockup .ui-row + .ui-stats { margin-top: 1rem; }
+
+  /* ---------- Customer quote (Solutions) ---------- */
+  .quote { margin: 2rem 0 0; }
+  .quote blockquote { margin: 0; }
+  .quote blockquote p {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    font-weight: 700;
+  }
+  .quote figcaption { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
+
+  .pain { margin: 1rem 0 0; max-width: 36rem; font-size: var(--text-lg); }
+  .pain strong { display: block; }
+
+  /* Photo with a product screen overlapping its bottom edge. */
+  .scene { position: relative; }
+  .scene .ui-mockup { position: relative; margin: -4rem 1rem 0; }
+  @media (min-width: 640px) {
+    .scene .ui-mockup { margin-inline: 2rem; }
+  }
+}
+
+@layer components {
+  /* Rows with a label, an amount and a status: fixed columns so amounts line up. */
+  .ui-row:has(> :nth-child(3)) {
+    display: grid;
+    grid-template-columns: 1fr auto 6rem;
+    column-gap: 1rem;
+  }
+  .ui-row:has(> :nth-child(3)) > :nth-child(2) { text-align: right; }
+  .ui-row:has(> :nth-child(3)) > .pill { justify-self: end; }
+}
+
+@layer components {
+  /* Invoice and sales line items keep their own qty | name | amount layout. */
+  .ui-mockup .ui-lines .ui-row { grid-template-columns: 2rem 1fr auto; }
+  .ui-mockup .ui-lines .ui-row > :nth-child(2) { text-align: left; }
 }

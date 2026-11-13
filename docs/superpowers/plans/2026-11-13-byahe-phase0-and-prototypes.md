@@ -18,7 +18,7 @@
 - Type: only the fluid scale steps `sm, base, lg, xl, 2xl..6xl` (Tailwind `text-*`, CSS `var(--text-*)`). No arbitrary sizes.
 - Spacing: padding, margin and gap on a 4px grid.
 - Corners: nested rounded boxes in a corner follow outer radius = inner radius + gap.
-- Headlines break at phrase boundaries: join words inside a phrase with `&nbsp;`, then pick `text-balance` or `text-pretty`, whichever keeps phrases whole at 360px, 768px and 1280px.
+- Headlines break at phrase boundaries: join words inside a phrase with a `whitespace-nowrap` span (never `&nbsp;` in Cubao: its no-break space is extra wide), then pick `text-balance` or `text-pretty`, whichever keeps phrases whole at 360px, 768px and 1280px.
 - Shadows: `4px 4px 0 #13205C` (sm), `8px 8px 0 #13205C` (lg). Border `2px solid #13205C`. Radius `10px` for cards, `999px` for buttons and pills.
 - Contrast: WCAG 2.2 AA on every pair. Red on yellow only for large text (≥24px, or ≥18.66px bold) and non-text. Never navy on blue (spec §6.4).
 - Voice: English with short Taglish punchlines in headlines and CTAs. Body, legal and security text in plain English.
