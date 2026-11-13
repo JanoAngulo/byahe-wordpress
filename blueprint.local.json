@@ -1,0 +1,11 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/",
+  "login": true,
+  "preferredVersions": { "php": "8.2", "wp": "latest" },
+  "steps": [
+    { "step": "activateTheme", "themeFolderName": "byahe" },
+    { "step": "activatePlugin", "pluginPath": "byahe-core/byahe-core.php" },
+    { "step": "setSiteOptions", "options": { "blogname": "BYAHE", "blogdescription": "Bayad na, tuloy ang byahe." } }
+  ]
+}

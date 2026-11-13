@@ -30,12 +30,12 @@ Built as static HTML + Tailwind CSS first, then converted into a custom WordPres
 
 ## Phase 0 — Setup
 
-- [ ] Project folder structure (`prototype/`, `wp-content/themes/byahe/`, `wp-content/plugins/byahe-core/`)
-- [ ] Tailwind build pipeline
-- [ ] Design tokens (colors, type scale, spacing, shadows) in Tailwind config
-- [ ] WordPress Playground running locally
+- [x] Project folder structure (`prototype/`, `theme/byahe/`, `plugins/byahe-core/`)
+- [x] Tailwind build pipeline (Vite + Tailwind v4)
+- [x] Design tokens (`tokens/tokens.json` → Tailwind `@theme` + `theme.json`, contrast-checked)
+- [x] WordPress Playground running locally (`npm run dev:wp` → http://127.0.0.1:9400)
 - [ ] Playground blueprint (auto-installs theme, plugin, demo content)
-- [ ] Git repo + `.gitignore`
+- [x] Git repo + `.gitignore`
 
 ---
 

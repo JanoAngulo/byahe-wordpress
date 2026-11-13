@@ -11,7 +11,8 @@
     "build:proto": "npm run build:tokens && vite build --config prototype/vite.config.mjs",
     "preview:proto": "vite preview --config prototype/vite.config.mjs --port 4173 --strictPort",
     "test:e2e": "playwright test",
-    "test": "npm run test:unit && npm run test:e2e"
+    "test": "npm run test:unit && npm run test:e2e",
+    "dev:wp": "wp-playground-cli server --port=9400 --php=8.2 --login --mount-dir ./theme/byahe /wordpress/wp-content/themes/byahe --mount-dir ./plugins/byahe-core /wordpress/wp-content/plugins/byahe-core --blueprint=./blueprint.local.json"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
@@ -19,6 +20,7 @@
     "@fontsource-variable/space-grotesk": "^5.3.0",
     "@playwright/test": "^1.65.0",
     "@tailwindcss/vite": "^4.3.5",
+    "@wp-playground/cli": "3.1.64",
     "lucide-static": "^1.72.0",
     "tailwindcss": "^4.3.5",
     "vite": "^8.3.8"
