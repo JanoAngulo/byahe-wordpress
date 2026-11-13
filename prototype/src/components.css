@@ -433,6 +433,9 @@
     stroke-linecap: round;
     stroke-linejoin: round;
   }
+  /* On yellow sections the yellow band would vanish: switch to a blue sign with a yellow icon. */
+  .bg-yellow .card-sign { background: var(--color-blue); }
+  .bg-yellow .card-sign__icon { stroke: var(--color-yellow); }
   .card-body { padding: 1.5rem; }
   .feature-card h3 { margin: 0 0 0.5rem; font-size: var(--text-xl); }
   .feature-card p { margin: 0; }

@@ -94,6 +94,7 @@ test.describe('home page', () => {
 });
 
 test.describe('card signboards', () => {
+  const bands = { '#features': 'rgb(29, 63, 187)', '#security': 'rgb(255, 201, 60)' };
   for (const section of ['#features', '#security']) {
     test(`${section} icons sit in a signboard band, aligned with the title`, async ({ page }) => {
       await page.goto('/');
@@ -102,7 +103,7 @@ test.describe('card signboards', () => {
       for (const card of await cards.all()) {
         const sign = card.locator('.card-sign');
         await expect(sign).toHaveCount(1);
-        expect(await sign.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe('rgb(255, 201, 60)');
+        expect(await sign.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(bands[section]);
         const iconX = (await sign.locator('svg').boundingBox()).x;
         const titleX = (await card.locator('h3').boundingBox()).x;
         expect(Math.abs(iconX - titleX)).toBeLessThan(1);
@@ -111,5 +112,16 @@ test.describe('card signboards', () => {
         expect(Math.abs(signBox.y - (cardBox.y + 2))).toBeLessThan(1);
       }
     });
+  }
+});
+
+test('signboard band contrasts with its section background', async ({ page }) => {
+  await page.goto('/');
+  for (const section of ['#features', '#security']) {
+    const [sectionBg, bandBg] = await page.locator(section).evaluate((el) => [
+      getComputedStyle(el).backgroundColor,
+      getComputedStyle(el.querySelector('.card-sign')).backgroundColor,
+    ]);
+    expect(bandBg, section).not.toBe(sectionBg);
   }
 });
