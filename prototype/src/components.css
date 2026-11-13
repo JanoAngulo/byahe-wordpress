@@ -1,0 +1,42 @@
+/* Shared BYAHE components. Refined in Task 4. */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.625rem 1.25rem;
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .btn-primary { background: var(--color-blue); color: var(--color-white); }
+  .btn-secondary { background: var(--color-white); color: var(--color-navy); }
+
+  .card-hard {
+    background: var(--color-white);
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-hard-sm);
+  }
+  .card-hard-lg { box-shadow: var(--shadow-hard-lg); }
+
+  .stripe {
+    height: 8px;
+    background: repeating-linear-gradient(90deg, var(--color-red) 0 32px, var(--color-yellow) 32px 64px, var(--color-blue) 64px 96px);
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.625rem;
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-pill);
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+  .pill-paid { background: var(--color-yellow); color: var(--color-navy); }
+  .pill-pending { background: var(--color-white); color: var(--color-navy); }
+  .pill-overdue { background: var(--color-red); color: var(--color-white); }
+}
