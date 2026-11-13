@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Downloads the photos listed in scripts/photos.json, converts them to WebP
- * (longest edge 2000px, quality 78) into prototype/public/images/, and regenerates
+ * (longest edge 2000px, quality 78) into prototype/public/images/ with 480/800/1200px
+ * srcset variants, and regenerates
  * CREDITS.md. Existing files are skipped unless --force is passed.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
@@ -40,6 +41,18 @@ for (const photo of photos) {
     .webp({ quality: photo.quality ?? 78 })
     .toFile(file);
   console.log(`wrote ${photo.slug}.webp ${info.width}x${info.height} ${Math.round(info.size / 1024)}KB`);
+}
+
+// Smaller widths for srcset, cut from the stored master so no re-download is needed.
+const VARIANT_WIDTHS = [480, 800, 1200];
+for (const photo of photos) {
+  const master = resolve(outDir, `${photo.slug}.webp`);
+  for (const width of VARIANT_WIDTHS) {
+    const file = resolve(outDir, `${photo.slug}-${width}.webp`);
+    if (existsSync(file) && !force) continue;
+    const info = await sharp(master).resize({ width }).webp({ quality: photo.quality ?? 78 }).toFile(file);
+    console.log(`wrote ${photo.slug}-${width}.webp ${Math.round(info.size / 1024)}KB`);
+  }
 }
 
 const rows = photos.map((p) => {

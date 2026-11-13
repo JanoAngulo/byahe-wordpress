@@ -103,7 +103,7 @@ Blocks:
 
 - [ ] `/design-system` page (tokens, type, buttons, forms, cards)
 - [ ] Case study page (brief → tokens → HTML → WordPress → results)
-- [ ] Lighthouse scores recorded
+- [x] Lighthouse scores recorded (prototype; see Notes)
 - [ ] axe accessibility audit, zero critical issues
 - [ ] PHPCS (WordPress Coding Standards) passing
 - [ ] ESLint passing
@@ -116,4 +116,24 @@ Blocks:
 
 ## Notes
 
--
+### Prototype scores
+
+Lighthouse 13.6, mobile preset (simulated slow 4G, mid-range phone), on the production build served by `npm run preview:proto`. Measured 2026-11-13. Targets: performance 90+, accessibility 100, best practices 95+, SEO 100.
+
+| Page | Performance | Accessibility | Best practices | SEO | LCP | CLS |
+|---|---|---|---|---|---|---|
+| Home | 96 | 100 | 100 | 100 | 2.7 s | 0 |
+| Product | 100 | 100 | 100 | 100 | 0.8 s | 0 |
+| Pricing | 100 | 100 | 100 | 100 | 0.8 s | 0 |
+| Solutions | 100 | 100 | 100 | 100 | 0.8 s | 0 |
+| About | 100 | 100 | 100 | 100 | 0.8 s | 0 |
+
+What the first run caught, and the fixes:
+
+- Home performance was 88 (LCP 3.9 s). The hero photo shipped at 1782 px to a 376 px slot. Every photo now has 480, 800 and 1200 px WebP versions with `srcset` and `sizes`.
+- Best practices was 96 on every page because `/favicon.ico` returned 404. Added an SVG favicon.
+- Solutions CLS was 0.15. Inter loading late rewrapped the section links in the hero from three rows to two. Cubao Free and Inter (latin) are now preloaded.
+
+### Keyboard
+
+`tests/e2e/keyboard.spec.mjs` tabs through each page at 1280 px and 360 px, from the skip link to the last footer link. Every stop is on screen and shows a focus ring, and nothing traps focus. All five pages pass at both widths. Breaking the global focus ring makes it fail.

@@ -15,6 +15,7 @@ const pages = Object.fromEntries(
 
 export default defineConfig({
   root,
+  appType: 'mpa',
   plugins: [tailwindcss(), includePartials({ root: resolve(root, 'partials') })],
   build: {
     outDir: resolve(root, 'dist'),
