@@ -149,7 +149,7 @@ test('invoice line items keep names left-aligned next to the quantity', async ({
 });
 
 test('Cubao headlines use real spaces, not wide non-breaking ones', async ({ page }) => {
-  for (const path of ['/', '/product.html', '/pricing.html', '/solutions.html']) {
+  for (const path of ['/', '/product.html', '/pricing.html', '/solutions.html', '/about.html']) {
     await page.goto(path);
     const text = await page.locator('h1').evaluate((el) => el.textContent);
     expect(text, path).not.toContain('\u00a0');
