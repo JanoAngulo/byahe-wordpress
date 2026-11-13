@@ -1,2 +1,9 @@
-.superpowers/
 node_modules/
+dist/
+prototype/dist/
+test-results/
+playwright-report/
+.superpowers/
+.impeccable/
+theme/byahe/assets/css/
+plugins/*/build/

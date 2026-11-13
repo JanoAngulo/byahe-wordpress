@@ -1,0 +1,159 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"layout": {
+			"contentSize": "1200px",
+			"wideSize": "1440px"
+		},
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"palette": [
+				{
+					"slug": "yellow",
+					"name": "Yellow",
+					"color": "#FFC93C"
+				},
+				{
+					"slug": "blue",
+					"name": "Blue",
+					"color": "#1D3FBB"
+				},
+				{
+					"slug": "navy",
+					"name": "Navy",
+					"color": "#13205C"
+				},
+				{
+					"slug": "red",
+					"name": "Red",
+					"color": "#D62828"
+				},
+				{
+					"slug": "cream",
+					"name": "Cream",
+					"color": "#FFF8E7"
+				},
+				{
+					"slug": "white",
+					"name": "White",
+					"color": "#FFFFFF"
+				}
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fontFamilies": [
+				{
+					"slug": "heading",
+					"name": "Space Grotesk",
+					"fontFamily": "\"Space Grotesk Variable\", system-ui, sans-serif"
+				},
+				{
+					"slug": "body",
+					"name": "Inter",
+					"fontFamily": "\"Inter Variable\", system-ui, sans-serif"
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "sm",
+					"name": "SM",
+					"size": "0.875rem"
+				},
+				{
+					"slug": "base",
+					"name": "BASE",
+					"size": "1rem"
+				},
+				{
+					"slug": "lg",
+					"name": "LG",
+					"size": "1.125rem"
+				},
+				{
+					"slug": "xl",
+					"name": "XL",
+					"size": "1.375rem"
+				},
+				{
+					"slug": "2xl",
+					"name": "2XL",
+					"size": "1.75rem"
+				},
+				{
+					"slug": "3xl",
+					"name": "3XL",
+					"size": "2.25rem"
+				},
+				{
+					"slug": "4xl",
+					"name": "4XL",
+					"size": "3rem"
+				},
+				{
+					"slug": "5xl",
+					"name": "5XL",
+					"size": "4rem"
+				}
+			]
+		},
+		"spacing": {
+			"defaultSpacingSizes": false,
+			"spacingSizes": [
+				{
+					"slug": "20",
+					"name": "20",
+					"size": "0.5rem"
+				},
+				{
+					"slug": "30",
+					"name": "30",
+					"size": "1rem"
+				},
+				{
+					"slug": "40",
+					"name": "40",
+					"size": "1.5rem"
+				},
+				{
+					"slug": "50",
+					"name": "50",
+					"size": "2rem"
+				},
+				{
+					"slug": "60",
+					"name": "60",
+					"size": "3rem"
+				},
+				{
+					"slug": "70",
+					"name": "70",
+					"size": "4.5rem"
+				},
+				{
+					"slug": "80",
+					"name": "80",
+					"size": "6rem"
+				}
+			]
+		},
+		"shadow": {
+			"defaultPresets": false,
+			"presets": [
+				{
+					"slug": "hard-sm",
+					"name": "Hard Sm",
+					"shadow": "4px 4px 0 #13205C"
+				},
+				{
+					"slug": "hard-lg",
+					"name": "Hard Lg",
+					"shadow": "8px 8px 0 #13205C"
+				}
+			]
+		}
+	}
+}

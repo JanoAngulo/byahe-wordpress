@@ -1,0 +1,11 @@
+{
+  "name": "byahe",
+  "private": true,
+  "type": "module",
+  "description": "BYAHE: fictional Philippine fintech marketing site, HTML + Tailwind prototype converted to a WordPress block theme.",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "test:unit": "node --test tests/unit/",
+    "build:tokens": "node scripts/build-tokens.mjs"
+  }
+}
