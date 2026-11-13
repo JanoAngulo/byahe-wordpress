@@ -177,24 +177,37 @@
       <div class="container py-16 md:py-24">
         <h2 id="pricing-teaser-title" class="m-0 text-4xl">Simple pricing in pesos.</h2>
         <p class="mt-4 mb-0 text-lg">Start on Libre, free for up to 10 invoices a month. Upgrade when you outgrow it.</p>
-        <ul class="mt-10 mb-0 p-0 list-none grid gap-6 md:grid-cols-3 md:items-stretch">
-          <li class="card-hard card-hard-lg bg-yellow! p-6 flex flex-col">
-            <p class="m-0 flex items-center justify-between gap-2"><span class="font-heading font-bold text-xl">Negosyo</span><span class="pill pill-pending">Most popular</span></p>
-            <p class="mt-4 mb-0"><span class="num font-heading font-bold text-3xl">₱499</span> <span class="font-semibold">/ month</span></p>
-            <p class="mt-3 mb-6">Unlimited invoices and automatic reminders.</p>
-            <a class="btn btn-primary mt-auto self-start" href="pricing.html">Compare plans</a>
+        <ul class="mt-10 mb-0 p-0 list-none grid gap-6 lg:grid-cols-3">
+          <li class="card-hard tier tier--teaser card-hard-lg bg-yellow!">
+            <div class="tier__top">
+              <p class="tier__name">Negosyo</p>
+              <p class="tier__price"><span class="price num">₱499</span> <span class="price-period">per month</span></p>
+            </div>
+            <span class="pill pill-pending tier__badge">Most popular</span>
+            <div class="tier__bottom">
+              <p class="tier__desc">Unlimited invoices and automatic reminders.</p>
+              <a class="btn btn-primary" href="pricing.html">Compare plans</a>
+            </div>
           </li>
-          <li class="card-hard p-6 flex flex-col">
-            <p class="m-0 font-heading font-bold text-xl">Pro</p>
-            <p class="mt-4 mb-0"><span class="num font-heading font-bold text-3xl">₱1,499</span> <span class="font-semibold">/ month</span></p>
-            <p class="mt-3 mb-6">Team access, the cash-flow dashboard and the API.</p>
-            <a class="btn btn-secondary mt-auto self-start" href="pricing.html">Compare plans</a>
+          <li class="card-hard tier tier--teaser">
+            <div class="tier__top">
+              <p class="tier__name">Pro</p>
+              <p class="tier__price"><span class="price num">₱1,499</span> <span class="price-period">per month</span></p>
+            </div>
+            <div class="tier__bottom">
+              <p class="tier__desc">Team access, the cash-flow dashboard and the API.</p>
+              <a class="btn btn-secondary" href="pricing.html">Compare plans</a>
+            </div>
           </li>
-          <li class="card-hard p-6 flex flex-col">
-            <p class="m-0 font-heading font-bold text-xl">Enterprise</p>
-            <p class="mt-4 mb-0 font-heading font-bold text-3xl">Let's talk</p>
-            <p class="mt-3 mb-6">Volume pricing, custom roles and a dedicated contact.</p>
-            <a class="btn btn-secondary mt-auto self-start" href="pricing.html">Compare plans</a>
+          <li class="card-hard tier tier--teaser">
+            <div class="tier__top">
+              <p class="tier__name">Enterprise</p>
+              <p class="tier__price"><span class="price-text">Let's talk</span> <span class="price-period">custom pricing</span></p>
+            </div>
+            <div class="tier__bottom">
+              <p class="tier__desc">Volume pricing, custom roles and a dedicated contact.</p>
+              <a class="btn btn-secondary" href="pricing.html">Compare plans</a>
+            </div>
           </li>
         </ul>
       </div>

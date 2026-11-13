@@ -125,3 +125,27 @@ test('signboard band contrasts with its section background', async ({ page }) =>
     expect(bandBg, section).not.toBe(sectionBg);
   }
 });
+
+test.describe('pricing teaser holds up at every width', () => {
+  for (const width of [360, 768, 1024, 1280]) {
+    test(`at ${width}px nothing wraps or spills`, async ({ page }, info) => {
+      test.skip(info.project.name !== 'desktop', 'viewport set explicitly');
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/');
+      const lines = (loc) => loc.evaluate((el) => {
+        const r = document.createRange();
+        r.selectNodeContents(el);
+        return new Set([...r.getClientRects()].map((x) => Math.round(x.top))).size;
+      });
+      for (const btn of await page.locator('#pricing-teaser .btn').all()) expect(await lines(btn), 'button label').toBe(1);
+      for (const p of await page.locator('#pricing-teaser .price, #pricing-teaser .price-text').all()) expect(await lines(p), 'price').toBe(1);
+      for (const card of await page.locator('#pricing-teaser .tier').all()) {
+        const c = await card.boundingBox();
+        for (const pill of await card.locator('.pill').all()) {
+          const b = await pill.boundingBox();
+          expect(b.x >= c.x && b.x + b.width <= c.x + c.width, 'badge inside card').toBe(true);
+        }
+      }
+    });
+  }
+});
