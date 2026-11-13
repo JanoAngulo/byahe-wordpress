@@ -49,7 +49,7 @@ Each page: build HTML prototype → **John reviews & approves** → convert to W
 | Home | [x] | [x] | [ ] | [ ] | [ ] |
 | Product / Features | [x] | [x] | [ ] | [ ] | [ ] |
 | Pricing | [x] | [x] | [ ] | [ ] | [ ] |
-| Solutions (by business type) | [ ] | [ ] | [ ] | [ ] | [ ] |
+| Solutions (by business type) | [x] | [x] | [ ] | [ ] | [ ] |
 | About | [ ] | [ ] | [ ] | [ ] | [ ] |
 
 Shared parts for Phase 1:
