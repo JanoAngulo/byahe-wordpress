@@ -120,3 +120,10 @@ test.describe('footer and components', () => {
     for (const c of ['rgb(214, 40, 40)', 'rgb(255, 201, 60)', 'rgb(29, 63, 187)']) expect(bg).toContain(c);
   });
 });
+
+test('duotone photos use the shared navy/yellow SVG filter', async ({ page }) => {
+  await page.goto('/components.html');
+  await expect(page.locator('filter#byahe-duotone')).toHaveCount(1);
+  const filter = await page.locator('.photo-duotone img').first().evaluate((el) => getComputedStyle(el).filter);
+  expect(filter).toContain('#byahe-duotone');
+});

@@ -14,7 +14,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run build:proto && npm run preview:proto',
     url: 'http://localhost:4173/components.html',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });
