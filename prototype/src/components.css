@@ -408,28 +408,34 @@
 }
 
 @layer components {
-  /* ---------- Feature card ---------- */
+  /* ---------- Feature card with signboard header ---------- */
+  /* The band touches the card's inner corners (10px radius - 2px border = 8px, gap 0). */
   .feature-card {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    padding: 1.5rem;
+    overflow: hidden;
   }
-  .feature-card h3 { margin: 1rem 0 0.5rem; font-size: var(--text-xl); }
-  .feature-card p { margin: 0; }
-  .feature-card__icon {
-    width: 44px;
-    height: 44px;
-    padding: 8px;
+  .card-sign {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-yellow);
+    border-bottom: 2px solid var(--color-navy);
+    border-radius: 8px 8px 0 0;
+  }
+  .card-sign__icon {
+    width: 28px;
+    height: 28px;
     fill: none;
     stroke: var(--color-navy);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-    background: var(--color-yellow);
-    border: 2px solid var(--color-navy);
-    /* Corner plate: sits 4px inside a 1.5rem-padded card. Card inner curve (10px - 2px border) = 4px radius + 4px gap. */
-    border-radius: 4px;
-    margin: -1.25rem 0 0 -1.25rem;
   }
+  .card-body { padding: 1.5rem; }
+  .feature-card h3 { margin: 0 0 0.5rem; font-size: var(--text-xl); }
+  .feature-card p { margin: 0; }
 
   /* ---------- Numbered steps (a real sequence) ---------- */
   .steps { counter-reset: step; }

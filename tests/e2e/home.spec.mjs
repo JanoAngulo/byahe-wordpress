@@ -92,3 +92,24 @@ test.describe('home page', () => {
     }
   });
 });
+
+test.describe('card signboards', () => {
+  for (const section of ['#features', '#security']) {
+    test(`${section} icons sit in a signboard band, aligned with the title`, async ({ page }) => {
+      await page.goto('/');
+      const cards = page.locator(`${section} .card-hard`);
+      expect(await cards.count()).toBeGreaterThanOrEqual(3);
+      for (const card of await cards.all()) {
+        const sign = card.locator('.card-sign');
+        await expect(sign).toHaveCount(1);
+        expect(await sign.evaluate((el) => getComputedStyle(el).backgroundColor)).toBe('rgb(255, 201, 60)');
+        const iconX = (await sign.locator('svg').boundingBox()).x;
+        const titleX = (await card.locator('h3').boundingBox()).x;
+        expect(Math.abs(iconX - titleX)).toBeLessThan(1);
+        const signBox = await sign.boundingBox();
+        const cardBox = await card.boundingBox();
+        expect(Math.abs(signBox.y - (cardBox.y + 2))).toBeLessThan(1);
+      }
+    });
+  }
+});
