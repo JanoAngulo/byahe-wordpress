@@ -3,12 +3,14 @@
  * Copies build-time assets the WordPress theme and plugin need but the repo
  * does not commit: self-hosted fonts, stock photos and Lucide icons.
  */
-import { copyFileSync, mkdirSync, readdirSync } from 'node:fs';
+import { copyFileSync, mkdirSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-/** Lucide icons the plugin's `byahe/icon` block may render. */
-export const ICONS = [];
+/** Lucide icons the plugin's `byahe/icon` block may render (plugins/byahe-core/inc/icons.json). */
+export const ICONS = JSON.parse(
+  readFileSync(new URL('../plugins/byahe-core/inc/icons.json', import.meta.url), 'utf8'),
+);
 
 const FONTS = [
   ['prototype/src/fonts/cubao-free-variable.woff2', 'cubao-free-variable.woff2'],

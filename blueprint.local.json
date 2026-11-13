@@ -24,7 +24,8 @@
       "step": "setSiteOptions",
       "options": {
         "blogname": "BYAHE",
-        "blogdescription": "Bayad na, tuloy ang byahe."
+        "blogdescription": "Bayad na, tuloy ang byahe.",
+        "admin_email_lifespan": 4102444800
       }
     },
     {

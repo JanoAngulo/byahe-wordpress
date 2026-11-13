@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { cpSync, existsSync, mkdtempSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { copyAssets } from '../../scripts/copy-assets.mjs';
+import { copyAssets, ICONS } from '../../scripts/copy-assets.mjs';
 
 const repo = resolve(import.meta.dirname, '../..');
 
@@ -35,6 +35,18 @@ test('copyAssets copies fonts, photos and photo data into the theme', async () =
     for (const img of sourceImages) assert.ok(out.images.includes(img), `missing ${img}`);
     assert.ok(existsSync(join(root, 'theme/byahe/assets/images/photos.json')));
     assert.ok(existsSync(join(root, 'theme/byahe/assets/fonts/cubao-free-variable.woff2')));
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('every allow-listed icon exists in lucide-static and is copied into the plugin', async () => {
+  assert.ok(ICONS.length > 0);
+  const root = fixtureRoot();
+  try {
+    const out = await copyAssets({ root });
+    assert.deepEqual(out.icons, ICONS);
+    for (const name of ICONS) assert.ok(existsSync(join(root, `plugins/byahe-core/assets/icons/${name}.svg`)), name);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

@@ -20,6 +20,8 @@ define( 'BYAHE_CORE_DIR', __DIR__ );
 
 require_once __DIR__ . '/inc/pricing.php';
 require_once __DIR__ . '/inc/bindings.php';
+require_once __DIR__ . '/inc/fields.php';
+require_once __DIR__ . '/inc/icons.php';
 require_once __DIR__ . '/inc/blocks.php';
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {

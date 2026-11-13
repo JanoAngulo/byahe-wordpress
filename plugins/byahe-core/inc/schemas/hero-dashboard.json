@@ -1,0 +1,40 @@
+{
+	"fields": {
+		"label": { "label": "Heading", "default": "Collected this month" },
+		"total": { "label": "Total collected", "default": "₱482,310" },
+		"delta": { "label": "Change", "default": "+18%" },
+		"deltaLabel": { "label": "Compared with", "default": "vs October" }
+	},
+	"lists": {
+		"bars": {
+			"label": "Chart bars (last is this month)",
+			"columns": {
+				"height": { "label": "Height (%)" }
+			},
+			"default": [
+				{ "height": "38" },
+				{ "height": "52" },
+				{ "height": "46" },
+				{ "height": "64" },
+				{ "height": "71" },
+				{ "height": "92" }
+			]
+		},
+		"invoices": {
+			"label": "Recent invoices",
+			"columns": {
+				"number": { "label": "Invoice no." },
+				"customer": { "label": "Customer" },
+				"amount": { "label": "Amount" },
+				"status": { "label": "Status", "options": [ "Paid", "Pending", "Overdue" ] }
+			},
+			"ariaRow": "{customer} {status} {amount}",
+			"default": [
+				{ "number": "INV-0142", "customer": "Kape't Tinapay Co.", "amount": "₱18,500", "status": "Paid" },
+				{ "number": "INV-0141", "customer": "Aling Nena's Sari-Sari", "amount": "₱3,240", "status": "Pending" },
+				{ "number": "INV-0139", "customer": "Studio Bahaghari", "amount": "₱45,000", "status": "Overdue" }
+			]
+		}
+	},
+	"ariaLabel": "BYAHE dashboard: {total} collected this month, {delta} {deltaLabel}. Recent invoices: {invoices}."
+}

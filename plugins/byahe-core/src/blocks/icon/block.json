@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "byahe/icon",
+	"title": "BYAHE icon",
+	"category": "design",
+	"icon": "star-filled",
+	"description": "A decorative line icon. Add the class card-sign to show it as a feature card's sign band.",
+	"keywords": [ "byahe", "icon", "lucide" ],
+	"textdomain": "byahe-core",
+	"attributes": {
+		"icon": {
+			"type": "string",
+			"default": "file-text"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

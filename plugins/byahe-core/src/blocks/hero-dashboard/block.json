@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "byahe/hero-dashboard",
+	"title": "BYAHE hero dashboard",
+	"category": "widgets",
+	"icon": "chart-bar",
+	"description": "A live HTML product dashboard: total collected, a small bar chart and recent invoices. Every figure is editable.",
+	"keywords": [ "byahe", "dashboard", "mockup" ],
+	"textdomain": "byahe-core",
+	"attributes": {
+		"values": {
+			"type": "object",
+			"default": {}
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}
