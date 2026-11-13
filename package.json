@@ -17,7 +17,7 @@
     "build:css": "tailwindcss -i theme/byahe/src/theme.css -o theme/byahe/assets/css/theme.css --minify",
     "build:blocks": "wp-scripts build --webpack-src-dir=plugins/byahe-core/src --output-path=plugins/byahe-core/build --experimental-modules --blocks-manifest",
     "build:wp": "npm run build:tokens && npm run build:assets && npm run build:css && npm run build:blocks",
-    "serve:wp": "wp-playground-cli server --port=9410 --php=8.2 --mount-dir ./theme/byahe /wordpress/wp-content/themes/byahe --mount-dir ./plugins/byahe-core /wordpress/wp-content/plugins/byahe-core --blueprint=./blueprint.local.json",
+    "serve:wp": "wp-playground-cli server --port=9410 --php=8.2 --mount-dir ./theme/byahe /wordpress/wp-content/themes/byahe --mount-dir ./plugins/byahe-core /wordpress/wp-content/plugins/byahe-core --mount-dir ./tests/wp/fixtures /wordpress/wp-content/mu-plugins --blueprint=./blueprint.local.json",
     "test:wp": "playwright test -c playwright.wp.config.mjs",
     "lint:php": "composer exec phpcs",
     "lint:js": "wp-scripts lint-js plugins/byahe-core/src",

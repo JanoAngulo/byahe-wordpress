@@ -20,6 +20,10 @@
         "blogname": "BYAHE",
         "blogdescription": "Bayad na, tuloy ang byahe."
       }
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp byahe seed"
     }
   ]
 }
