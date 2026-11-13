@@ -24,6 +24,11 @@
     text-wrap: balance;
   }
 
+  /* Figures that change (prices, totals, tables) keep their width. */
+  td, th, .num {
+    font-variant-numeric: tabular-nums;
+  }
+
   :focus-visible {
     outline: 3px solid var(--color-navy);
     outline-offset: 3px;

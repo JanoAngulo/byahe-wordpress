@@ -127,3 +127,50 @@ test('duotone photos use the shared navy/yellow SVG filter', async ({ page }) =>
   const filter = await page.locator('.photo-duotone img').first().evaluate((el) => getComputedStyle(el).filter);
   expect(filter).toContain('#byahe-duotone');
 });
+
+test.describe('tabular numbers', () => {
+  const digitWidths = (page, font) => page.evaluate(async (fontVar) => {
+    await document.fonts.ready;
+    const probe = (text) => {
+      const el = document.createElement('span');
+      el.className = 'num';
+      el.style.fontFamily = `var(${fontVar})`;
+      el.style.fontSize = '40px';
+      el.textContent = text;
+      document.body.append(el);
+      const w = el.getBoundingClientRect().width;
+      el.remove();
+      return w;
+    };
+    return { ones: probe('1111111111'), zeros: probe('0000000000') };
+  }, font);
+
+  for (const font of ['--font-body', '--font-heading']) {
+    test(`.num digits are equal width in ${font}`, async ({ page }) => {
+      await page.goto('/components.html');
+      const { ones, zeros } = await digitWidths(page, font);
+      expect(Math.abs(ones - zeros)).toBeLessThan(0.5);
+    });
+  }
+
+  test('money figures in the kit use .num', async ({ page }) => {
+    await page.goto('/components.html');
+    const value = await page.getByText('₱482,310').evaluate((el) => getComputedStyle(el).fontVariantNumeric);
+    expect(value).toContain('tabular-nums');
+  });
+
+  test('table cells use tabular numbers', async ({ page }) => {
+    await page.goto('/components.html');
+    const value = await page.evaluate(() => {
+      const td = document.createElement('td');
+      const table = document.createElement('table');
+      table.append(document.createElement('tr'));
+      table.firstChild.append(td);
+      document.body.append(table);
+      const v = getComputedStyle(td).fontVariantNumeric;
+      table.remove();
+      return v;
+    });
+    expect(value).toContain('tabular-nums');
+  });
+});

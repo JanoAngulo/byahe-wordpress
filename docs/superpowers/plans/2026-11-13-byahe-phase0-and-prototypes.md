@@ -21,6 +21,7 @@
 - Every page footer says BYAHE is a demo company. No third-party logos (GCash, Maya, banks, card networks). Payment methods are named in text only.
 - Photos: scenes only, from Pexels (Unsplash fallback), logged in `CREDITS.md`. No identifiable faces beside fictional testimonials, team or customers. Testimonials and team use initials avatars.
 - Product visuals are live HTML/CSS, never screenshots.
+- Numbers: every price, amount, count and stat uses the `.num` class (tabular digits) so figures never shift when they change. Table cells get tabular digits automatically.
 - No jQuery. No page builders. JS loads only on pages that need it.
 - Primary CTA "Sakay na →" links to `pricing.html#libre`. The Libre card button opens a native `<dialog>` saying BYAHE is a demo company, with a repo link (spec §9.6).
 - Nav: Product · Solutions · Pricing · About + CTA. No links to Phase 2 pages.
