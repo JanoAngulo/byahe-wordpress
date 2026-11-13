@@ -45,7 +45,7 @@ Each page: build HTML prototype → **John reviews & approves** → convert to W
 
 | Page | HTML prototype | John approved | WP template | Content | QA (a11y + Lighthouse) |
 |---|---|---|---|---|---|
-| Shared components | [ ] | [ ] | [ ] | — | [ ] |
+| Shared components | [x] | [x] | [ ] | — | [ ] |
 | Home | [ ] | [ ] | [ ] | [ ] | [ ] |
 | Product / Features | [ ] | [ ] | [ ] | [ ] | [ ] |
 | Pricing | [ ] | [ ] | [ ] | [ ] | [ ] |
