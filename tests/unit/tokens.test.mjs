@@ -38,7 +38,7 @@ test('theme.json palette slugs match token names', () => {
 test('theme.json shadow presets', () => {
   assert.deepEqual(
     toThemeJsonSettings(tokens).shadow.presets.map((p) => p.slug),
-    ['hard-sm', 'hard-lg'],
+    ['hard-sm', 'hard-md', 'hard-lg'],
   );
 });
 
@@ -86,4 +86,48 @@ test('tailwind theme resets default sizes and emits the scale with line heights'
   assert.match(css, /--text-6xl: clamp\(/);
   assert.match(css, /--text-6xl--line-height: 0\.95;/);
   assert.doesNotMatch(css, /--text-xs:/);
+});
+
+test('theme.json registers self-hosted font faces', () => {
+  const families = toThemeJsonSettings(tokens).typography.fontFamilies;
+  const face = (slug) => families.find((f) => f.slug === slug).fontFace;
+  assert.deepEqual(face('display')[0], {
+    fontFamily: 'Cubao Free',
+    fontWeight: '400',
+    fontStyle: 'normal',
+    fontStretch: '64% 177%',
+    fontDisplay: 'swap',
+    src: ['file:./assets/fonts/cubao-free-variable.woff2'],
+  });
+  assert.equal(face('body')[0].fontWeight, '100 900');
+  assert.equal(face('body')[0].fontFamily, 'Inter Variable');
+  assert.deepEqual(face('body')[0].src, ['file:./assets/fonts/inter-latin-wght-normal.woff2']);
+  assert.equal(face('heading')[0].fontWeight, '300 700');
+  assert.equal('fontStretch' in face('heading')[0], false);
+});
+
+test('theme.json font size names read like words', () => {
+  assert.deepEqual(
+    toThemeJsonSettings(tokens).typography.fontSizes.map((f) => f.name),
+    ['Small', 'Base', 'Large', 'Extra large', '2× large', '3× large', '4× large', '5× large', '6× large'],
+  );
+});
+
+test('theme.json has the navy and yellow duotone preset', () => {
+  assert.deepEqual(toThemeJsonSettings(tokens).color.duotone, [
+    { slug: 'navy-yellow', name: 'Navy and yellow', colors: ['#13205C', '#FFC93C'] },
+  ]);
+});
+
+test('tailwind theme has the medium shadow, small radius and shadow offset', () => {
+  const css = toTailwindTheme(tokens);
+  assert.match(css, /--shadow-hard-md: 6px 6px 0 #13205C;/);
+  assert.match(css, /--radius-sm: 6px;/);
+  assert.match(css, /--shadow-offset-xs: 3px;/);
+});
+
+test('theme.json exposes radius and shadow offset as custom properties', () => {
+  const s = toThemeJsonSettings(tokens);
+  assert.equal(s.custom.radius.sm, '6px');
+  assert.equal(s.custom.shadowOffset.xs, '3px');
 });

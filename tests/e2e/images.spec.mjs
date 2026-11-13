@@ -22,6 +22,20 @@ for (const path of PAGES) {
     }
   });
 
+  test(`photo sizes on ${path} match the rendered width at 1280px`, async ({ page }) => {
+    await page.goto(path);
+    const imgs = await page.locator('.photo-duotone img').evaluateAll((els) =>
+      els.map((img) => ({ src: img.getAttribute('src'), sizes: img.getAttribute('sizes'), width: img.getBoundingClientRect().width })),
+    );
+    for (const img of imgs) {
+      const vw = img.sizes.match(/\(min-width: 1024px\) (\d+)vw/);
+      if (!vw) continue;
+      const declared = (Number(vw[1]) / 100) * 1280;
+      expect(declared / img.width, `${img.src}: sizes ${declared}px vs rendered ${img.width}px`).toBeGreaterThanOrEqual(1);
+      expect(declared / img.width, `${img.src}: sizes ${declared}px vs rendered ${img.width}px`).toBeLessThan(1.35);
+    }
+  });
+
   test(`${path} declares a favicon that loads`, async ({ page, request }) => {
     await page.goto(path);
     const href = await page.locator('link[rel="icon"]').first().getAttribute('href');

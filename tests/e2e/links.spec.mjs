@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { htmlIds } from '../lib/html-ids.mjs';
 
 const PAGES = ['/index.html', '/product.html', '/pricing.html', '/solutions.html', '/about.html', '/components.html'];
 const REPO = 'https://github.com/JanoAngulo/byahe-wordpress';
@@ -29,9 +30,9 @@ for (const path of PAGES) {
       const res = await request.get(target);
       expect(res.status(), `${path} → ${target}`).toBe(200);
       if (!fragments.size) continue;
-      const html = await res.text();
+      const ids = htmlIds(await res.text());
       for (const id of fragments) {
-        expect(html.includes(`id="${id}"`), `${path} → ${target}#${id}`).toBe(true);
+        expect(ids.has(id), `${path} → ${target}#${id}`).toBe(true);
       }
     }
   });

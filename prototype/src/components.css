@@ -64,7 +64,7 @@
   }
   .btn:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 var(--color-navy);
+    box-shadow: var(--shadow-hard-md);
   }
   .btn:active {
     transform: translate(2px, 2px);
@@ -89,8 +89,8 @@
     transition: transform 120ms ease-out, box-shadow 120ms ease-out;
   }
   a.card-hard:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 7px 7px 0 var(--color-navy);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hard-md);
   }
 
   /* ---------- Stripe ---------- */
@@ -148,8 +148,8 @@
     padding: 0.5rem 0.75rem;
     background: var(--color-navy);
     color: var(--color-yellow);
-    border-radius: 6px;
-    box-shadow: 3px 3px 0 var(--color-red);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-offset-xs) var(--shadow-offset-xs) 0 var(--color-red);
     font-family: var(--font-display);
     font-size: var(--text-lg);
     font-weight: 400;
@@ -319,6 +319,7 @@
   /* ---------- Demo dialog ---------- */
   .demo-dialog {
     width: min(32rem, calc(100vw - 2rem));
+    margin: auto;
     padding: 2rem;
     background: var(--color-yellow);
     color: var(--color-navy);
@@ -467,13 +468,13 @@
     padding: 0.5rem 1rem;
     background: var(--color-white);
     border: 2px solid var(--color-navy);
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     font-family: var(--font-heading);
     font-weight: 700;
   }
-  .proof-list li:nth-child(3n + 1) { box-shadow: 3px 3px 0 var(--color-red); }
-  .proof-list li:nth-child(3n + 2) { box-shadow: 3px 3px 0 var(--color-blue); }
-  .proof-list li:nth-child(3n + 3) { box-shadow: 3px 3px 0 var(--color-yellow); }
+  .proof-list li:nth-child(3n + 1) { box-shadow: var(--shadow-offset-xs) var(--shadow-offset-xs) 0 var(--color-red); }
+  .proof-list li:nth-child(3n + 2) { box-shadow: var(--shadow-offset-xs) var(--shadow-offset-xs) 0 var(--color-blue); }
+  .proof-list li:nth-child(3n + 3) { box-shadow: var(--shadow-offset-xs) var(--shadow-offset-xs) 0 var(--color-yellow); }
 
   /* ---------- Payment method chips ---------- */
   .method-chips li {
@@ -496,7 +497,7 @@
     color: var(--color-navy);
     border: 2px solid var(--color-navy);
     border-radius: var(--radius-pill);
-    box-shadow: 3px 3px 0 var(--color-navy);
+    box-shadow: var(--shadow-offset-xs) var(--shadow-offset-xs) 0 var(--color-navy);
     font-family: var(--font-heading);
     font-size: var(--text-lg);
     font-weight: 700;
@@ -800,6 +801,8 @@
     font-family: var(--font-heading);
     font-size: var(--text-xl);
     font-weight: 700;
+    line-height: var(--text-base--line-height);
+    letter-spacing: 0;
   }
   .tier { position: relative; }
   /* Badge rides the top border so it never pushes the price down. */

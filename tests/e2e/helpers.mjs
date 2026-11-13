@@ -39,7 +39,7 @@ export async function expectNoMotionWhenReduced(page) {
     const bad = [];
     for (const el of document.querySelectorAll('*')) {
       const cs = getComputedStyle(el);
-      const durations = [...toSeconds(cs.animationDuration), ...toSeconds(cs.transitionDuration)];
+      const durations = [...toSeconds(cs.animationDuration), ...toSeconds(cs.transitionDuration), ...toSeconds(cs.animationDelay), ...toSeconds(cs.transitionDelay)];
       if (durations.some((d) => d > 0.01)) bad.push(el.tagName.toLowerCase() + (el.className ? `.${String(el.className).split(' ')[0]}` : ''));
     }
     return bad.slice(0, 10);

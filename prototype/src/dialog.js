@@ -15,8 +15,14 @@ export function initDemoDialog(root = document) {
     button.addEventListener('click', () => dialog.close());
   });
 
+  // Clicks on the dialog's own padding also target the dialog, so only close
+  // when the pointer is outside its box (the backdrop).
   dialog.addEventListener('click', (event) => {
-    if (event.target === dialog) dialog.close();
+    if (event.target !== dialog) return;
+    const box = dialog.getBoundingClientRect();
+    const inside = event.clientX >= box.left && event.clientX <= box.right
+      && event.clientY >= box.top && event.clientY <= box.bottom;
+    if (!inside) dialog.close();
   });
 
   dialog.addEventListener('close', () => {

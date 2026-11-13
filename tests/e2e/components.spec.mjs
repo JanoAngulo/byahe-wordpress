@@ -84,6 +84,30 @@ test.describe('demo dialog', () => {
     await expect(page.locator('#demo-dialog')).toBeHidden();
     await expect(trigger).toBeFocused();
   });
+
+  test('a click on the dialog padding keeps it open', async ({ page }) => {
+    await page.goto('/components.html');
+    await page.locator('[data-open-demo-dialog]').first().click();
+    const box = await page.locator('#demo-dialog').boundingBox();
+    await page.mouse.click(box.x + 5, box.y + 5);
+    await expect(page.locator('#demo-dialog')).toBeVisible();
+  });
+
+  test('sits in the middle of the viewport', async ({ page }) => {
+    await page.goto('/components.html');
+    await page.locator('[data-open-demo-dialog]').first().click();
+    const box = await page.locator('#demo-dialog').boundingBox();
+    const vp = page.viewportSize();
+    expect(Math.abs(box.x + box.width / 2 - vp.width / 2)).toBeLessThan(2);
+    expect(Math.abs(box.y + box.height / 2 - vp.height / 2)).toBeLessThan(2);
+  });
+
+  test('a click on the backdrop closes it', async ({ page }) => {
+    await page.goto('/components.html');
+    await page.locator('[data-open-demo-dialog]').first().click();
+    await page.mouse.click(5, 5);
+    await expect(page.locator('#demo-dialog')).toBeHidden();
+  });
 });
 
 test.describe('footer and components', () => {

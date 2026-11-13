@@ -2,6 +2,7 @@
 @import "./tokens.css";
 @import "@fontsource-variable/inter";
 @import "@fontsource-variable/space-grotesk";
+@import "./base.css";
 @import "./components.css";
 
 /* Cubao Free by Aaron Amar (aaronamar.gumroad.com). Variable width axis 64-177. */
@@ -15,10 +16,6 @@
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     font-family: var(--font-body);
     font-size: var(--text-base);
@@ -48,26 +45,4 @@
   h2 { font-size: var(--text-4xl); line-height: var(--text-4xl--line-height); }
   h3 { font-size: var(--text-xl); line-height: var(--text-xl--line-height); }
   h4 { font-size: var(--text-lg); line-height: var(--text-lg--line-height); }
-
-  /* Figures that change (prices, totals, tables) keep their width. */
-  td, th, .num {
-    font-variant-numeric: tabular-nums;
-  }
-
-  :focus-visible {
-    outline: 3px solid var(--color-navy);
-    outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
 }

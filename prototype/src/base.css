@@ -1,0 +1,30 @@
+/* Base rules shared by the prototype and the WordPress theme. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Figures that change (prices, totals, tables) keep their width. */
+  td, th, .num {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-navy);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      transition-delay: 0s !important;
+    }
+  }
+}

@@ -178,3 +178,17 @@ test.describe('FAQ two-column layout', () => {
     await expect(page.locator('#demo-dialog')).toBeVisible();
   });
 });
+
+test('plan names are level 3 headings', async ({ page }) => {
+  await page.goto('/pricing.html');
+  for (const [id, name] of [['libre', 'Libre'], ['negosyo', 'Negosyo'], ['pro', 'Pro'], ['enterprise', 'Enterprise']]) {
+    await expect(page.locator(`#${id}`).getByRole('heading', { level: 3, name })).toBeVisible();
+  }
+});
+
+test('home pricing teaser plan names are level 3 headings', async ({ page }) => {
+  await page.goto('/index.html');
+  for (const name of ['Negosyo', 'Pro', 'Enterprise']) {
+    await expect(page.locator('#pricing-teaser').getByRole('heading', { level: 3, name })).toBeVisible();
+  }
+});

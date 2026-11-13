@@ -10,6 +10,7 @@
 		"color": {
 			"defaultPalette": false,
 			"defaultGradients": false,
+			"defaultDuotone": false,
 			"palette": [
 				{
 					"slug": "yellow",
@@ -41,6 +42,16 @@
 					"name": "White",
 					"color": "#FFFFFF"
 				}
+			],
+			"duotone": [
+				{
+					"slug": "navy-yellow",
+					"name": "Navy and yellow",
+					"colors": [
+						"#13205C",
+						"#FFC93C"
+					]
+				}
 			]
 		},
 		"typography": {
@@ -49,67 +60,111 @@
 				{
 					"slug": "display",
 					"name": "Cubao Free",
-					"fontFamily": "\"Cubao Free\", \"Space Grotesk Variable\", system-ui, sans-serif"
+					"fontFamily": "\"Cubao Free\", \"Space Grotesk Variable\", system-ui, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Cubao Free",
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"fontStretch": "64% 177%",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/cubao-free-variable.woff2"
+							]
+						}
+					]
 				},
 				{
 					"slug": "heading",
 					"name": "Space Grotesk",
-					"fontFamily": "\"Space Grotesk Variable\", system-ui, sans-serif"
+					"fontFamily": "\"Space Grotesk Variable\", system-ui, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Space Grotesk Variable",
+							"fontWeight": "300 700",
+							"fontStyle": "normal",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/space-grotesk-latin-wght-normal.woff2"
+							]
+						}
+					]
 				},
 				{
 					"slug": "body",
 					"name": "Inter",
-					"fontFamily": "\"Inter Variable\", system-ui, sans-serif"
+					"fontFamily": "\"Inter Variable\", system-ui, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Inter Variable",
+							"fontWeight": "100 900",
+							"fontStyle": "normal",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/inter-latin-wght-normal.woff2"
+							]
+						}
+					]
 				}
 			],
 			"fluid": false,
 			"fontSizes": [
 				{
 					"slug": "sm",
-					"name": "SM",
+					"name": "Small",
 					"size": "clamp(0.8331rem, 0.807rem + 0.1163vw, 0.9rem)"
 				},
 				{
 					"slug": "base",
-					"name": "BASE",
+					"name": "Base",
 					"size": "clamp(1rem, 0.9511rem + 0.2174vw, 1.125rem)"
 				},
 				{
 					"slug": "lg",
-					"name": "LG",
+					"name": "Large",
 					"size": "clamp(1.2rem, 1.1193rem + 0.3587vw, 1.4063rem)"
 				},
 				{
 					"slug": "xl",
-					"name": "XL",
+					"name": "Extra large",
 					"size": "clamp(1.44rem, 1.3155rem + 0.5533vw, 1.7581rem)"
 				},
 				{
 					"slug": "2xl",
-					"name": "2XL",
+					"name": "2× large",
 					"size": "clamp(1.7281rem, 1.5445rem + 0.8163vw, 2.1975rem)"
 				},
 				{
 					"slug": "3xl",
-					"name": "3XL",
+					"name": "3× large",
 					"size": "clamp(2.0738rem, 1.8104rem + 1.1707vw, 2.7469rem)"
 				},
 				{
 					"slug": "4xl",
-					"name": "4XL",
+					"name": "4× large",
 					"size": "clamp(2.4881rem, 2.1183rem + 1.6435vw, 3.4331rem)"
 				},
 				{
 					"slug": "5xl",
-					"name": "5XL",
+					"name": "5× large",
 					"size": "clamp(2.9863rem, 2.4756rem + 2.2696vw, 4.2913rem)"
 				},
 				{
 					"slug": "6xl",
-					"name": "6XL",
+					"name": "6× large",
 					"size": "clamp(3.5831rem, 2.8861rem + 3.0978vw, 5.3644rem)"
 				}
 			]
+		},
+		"custom": {
+			"radius": {
+				"sm": "6px",
+				"card": "10px",
+				"pill": "999px"
+			},
+			"shadowOffset": {
+				"xs": "3px"
+			}
 		},
 		"spacing": {
 			"defaultSpacingSizes": false,
@@ -158,6 +213,11 @@
 					"slug": "hard-sm",
 					"name": "Hard Sm",
 					"shadow": "4px 4px 0 #13205C"
+				},
+				{
+					"slug": "hard-md",
+					"name": "Hard Md",
+					"shadow": "6px 6px 0 #13205C"
 				},
 				{
 					"slug": "hard-lg",
