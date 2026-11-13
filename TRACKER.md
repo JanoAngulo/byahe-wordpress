@@ -138,3 +138,15 @@ What the first run caught, and the fixes:
 ### Keyboard
 
 `tests/e2e/keyboard.spec.mjs` tabs through each page at 1280 px and 360 px, from the skip link to the last footer link. Every stop is on screen and shows a focus ring, and nothing traps focus. All five pages pass at both widths. Breaking the global focus ring makes it fail.
+
+### Carry into Plan B (deferred from the prototype review)
+
+- Reduced motion: also zero `animation-delay` and `transition-delay` (hero bars still snap in over 300ms).
+- Demo dialog: clicks inside its padding close it; close only on true backdrop clicks.
+- Mobile header: Tab order (toggle, then CTA) differs from the visual order (CTA, then toggle).
+- Collapse the mobile menu only after `nav.js` runs, not on the early `js` class.
+- Off-token shadows (3, 6, 7px) and a 6px radius: add tokens or snap to existing ones.
+- theme.json: register `fontFace` for the three families; fix "2XL"-style size names.
+- Home hero `sizes` is 75vw; the column is about 45vw.
+- Link checker matches ids by substring; parse the HTML instead.
+- Pricing plan names are `<p>`; make them `h3`.
