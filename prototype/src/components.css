@@ -934,3 +934,29 @@
   .faq details[open] summary { border-bottom: 2px dashed var(--color-navy); }
   .faq details p { margin: 0; padding: 1rem 1.5rem 1.5rem; max-width: 65ch; }
 }
+
+@layer components {
+  /* ---------- Groups of three cards on tablets ----------
+     Three columns at 768px squeeze cards to ~220px. Between 768 and 1023px each card
+     goes full width and lays out sideways instead; three across starts at 1024px. */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .cards-3 > .feature-card { flex-direction: row; }
+    .cards-3 > .feature-card .card-sign {
+      align-items: flex-start;
+      padding: 1.5rem;
+      border-bottom: 0;
+      border-right: 2px solid var(--color-navy);
+      /* Band touches the card's left inner corners: 10px - 2px border = 8px, gap 0. */
+      border-radius: 8px 0 0 8px;
+    }
+    .cards-3 > .feature-card .card-body { flex: 1; }
+
+    .steps.cards-3 > li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 1.5rem;
+      align-items: start;
+    }
+    .steps.cards-3 > li::before { grid-row: 1 / span 2; margin-bottom: 0; }
+  }
+}
