@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const PAGES = ['/index.html', '/product.html', '/pricing.html', '/solutions.html', '/about.html', '/components.html'];
-const SKIP = new Set(['#repo']);
+const REPO = 'https://github.com/JanoAngulo';
 
 test.beforeEach(({}, info) => test.skip(info.project.name !== 'desktop', 'links are the same at every width'));
 
@@ -17,7 +17,7 @@ for (const path of PAGES) {
     const origin = new URL(baseURL).origin;
     const targets = new Map();
     for (const href of new Set(hrefs)) {
-      if (SKIP.has(href) || /^(mailto:|tel:|javascript:)/.test(href)) continue;
+      if (/^(mailto:|tel:|javascript:)/.test(href)) continue;
       const url = new URL(href, new URL(path, baseURL));
       if (url.origin !== origin) continue;
       const key = url.pathname === '/' ? '/index.html' : url.pathname;
@@ -47,4 +47,16 @@ test('demo dialog triggers are links that still go somewhere without JavaScript'
       await expect(t).toHaveAttribute('href', 'about.html#demo-note');
     }
   }
+});
+
+test('every "view the code" link and the footer point at the GitHub repo', async ({ page }) => {
+  for (const path of PAGES) {
+    await page.goto(path);
+    await expect(page.locator('a[href="#repo"]'), path).toHaveCount(0);
+    await expect(page.locator(`footer a[href="${REPO}"]`), path).toHaveCount(1);
+  }
+  await page.goto('/about.html');
+  await expect(page.locator('#demo-note a', { hasText: 'GitHub' })).toHaveAttribute('href', REPO);
+  await page.goto('/pricing.html');
+  await expect(page.locator('#demo-dialog a', { hasText: 'GitHub' })).toHaveAttribute('href', REPO);
 });
