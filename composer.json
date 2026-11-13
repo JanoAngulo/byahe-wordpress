@@ -1,0 +1,14 @@
+{
+    "name": "janoangulo/byahe-wordpress",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.2"
+    }
+}

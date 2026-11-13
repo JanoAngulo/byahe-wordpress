@@ -1,0 +1,13 @@
+/*
+ * WordPress stylesheet for the BYAHE theme. Tailwind without preflight:
+ * theme.json and core styles handle the reset.
+ */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "../../../prototype/src/tokens.css";
+@import "../../../prototype/src/components.css";
+
+@source "../patterns";
+@source "../parts";
+@source "../templates";
+@source "../../../plugins/byahe-core/src";

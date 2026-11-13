@@ -7,3 +7,7 @@ playwright-report/
 .impeccable/
 theme/byahe/assets/css/
 plugins/*/build/
+vendor/
+theme/byahe/assets/fonts/
+theme/byahe/assets/images/
+plugins/byahe-core/assets/icons/
