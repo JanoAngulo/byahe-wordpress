@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 
 export async function expectNoA11yViolations(page) {
@@ -78,6 +79,36 @@ export async function expectSpacingOnGrid(page, grid = 4) {
   expect(offenders, `spacing values off the ${grid}px grid`).toEqual([]);
 }
 
+const TYPE_STEPS = Object.keys(JSON.parse(readFileSync(new URL('../../tokens/tokens.json', import.meta.url))).typeScale.steps);
+
+export async function expectTypeOnScale(page) {
+  const offenders = await page.evaluate((steps) => {
+    const allowed = steps.map((name) => {
+      const probe = document.createElement('span');
+      probe.style.fontSize = `var(--text-${name})`;
+      document.body.append(probe);
+      const px = parseFloat(getComputedStyle(probe).fontSize);
+      probe.remove();
+      return px;
+    });
+    const out = new Set();
+    for (const el of document.querySelectorAll('body *')) {
+      if (el.closest('svg') || el.closest('.sr-only') || el.matches('script, style, br')) continue;
+      const hasText = [...el.childNodes].some((n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
+      if (!hasText) continue;
+      const cs = getComputedStyle(el);
+      if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+      const px = parseFloat(cs.fontSize);
+      if (!allowed.some((a) => Math.abs(a - px) < 0.1)) {
+        const cls = typeof el.className === 'string' && el.className.trim() ? `.${el.className.trim().split(/\s+/)[0]}` : '';
+        out.add(`${el.tagName.toLowerCase()}${cls} ${cs.fontSize}`);
+      }
+    }
+    return [...out];
+  }, TYPE_STEPS);
+  expect(offenders, 'font sizes off the type scale').toEqual([]);
+}
+
 export function runPageBasics(test, path) {
   test.describe(`page basics: ${path}`, () => {
     test.beforeEach(async ({ page }) => {
@@ -89,5 +120,6 @@ export function runPageBasics(test, path) {
     test('has header, nav, main and footer landmarks', async ({ page }) => expectLandmarks(page));
     test('stops motion when reduced motion is preferred', async ({ page }) => expectNoMotionWhenReduced(page));
     test('keeps padding, margin and gap on a 4px grid', async ({ page }) => expectSpacingOnGrid(page));
+    test('uses only type scale font sizes', async ({ page }) => expectTypeOnScale(page));
   });
 }

@@ -6,10 +6,36 @@ const titleCase = (slug) => slug.replace(/(^|-)(\w)/g, (_, sep, c) => (sep ? ' '
 
 const fontStack = ({ family, fallback }) => `"${family}", ${fallback}`;
 
+const round = (n, d = 4) => Math.round(n * 10 ** d) / 10 ** d;
+
+/**
+ * Fluid modular type scale (Utopia-style). Each step interpolates linearly from
+ * min.base * min.ratio^step at minViewport to max.base * max.ratio^step at maxViewport.
+ */
+export function typeScale(tokens) {
+  const { minViewport, maxViewport, min, max, steps, lineHeights } = tokens.typeScale;
+  return Object.entries(steps).map(([name, step]) => {
+    const minPx = round(min.base * min.ratio ** step, 2);
+    const maxPx = round(max.base * max.ratio ** step, 2);
+    const slope = (maxPx - minPx) / (maxViewport - minViewport);
+    const interceptRem = round((minPx - slope * minViewport) / 16);
+    const vw = round(slope * 100);
+    return {
+      name,
+      minPx,
+      maxPx,
+      lineHeight: lineHeights[name],
+      clamp: `clamp(${round(minPx / 16)}rem, ${interceptRem}rem + ${vw}vw, ${round(maxPx / 16)}rem)`,
+    };
+  });
+}
+
 export function toTailwindTheme(tokens) {
   const lines = [
     ...Object.entries(tokens.color).map(([n, v]) => `  --color-${n}: ${v};`),
     ...Object.entries(tokens.font).map(([n, f]) => `  --font-${n}: ${fontStack(f)};`),
+    '  --text-*: initial;',
+    ...typeScale(tokens).flatMap((s) => [`  --text-${s.name}: ${s.clamp};`, `  --text-${s.name}--line-height: ${s.lineHeight};`]),
     ...Object.entries(tokens.shadow).map(([n, v]) => `  --shadow-${n}: ${v};`),
     ...Object.entries(tokens.radius).map(([n, v]) => `  --radius-${n}: ${v};`),
   ];
@@ -30,7 +56,8 @@ export function toThemeJsonSettings(tokens) {
         name: f.family.replace(/ Variable$/, ''),
         fontFamily: fontStack(f),
       })),
-      fontSizes: Object.entries(tokens.fontSize).map(([slug, size]) => ({ slug, name: slug.toUpperCase(), size })),
+      fluid: false,
+      fontSizes: typeScale(tokens).map((s) => ({ slug: s.name, name: s.name.toUpperCase(), size: s.clamp })),
     },
     spacing: {
       defaultSpacingSizes: false,

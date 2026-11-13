@@ -11,6 +11,8 @@
 
   body {
     font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
     color: var(--color-navy);
     background-color: var(--color-cream);
     -webkit-font-smoothing: antialiased;
@@ -20,9 +22,14 @@
     font-family: var(--font-heading);
     font-weight: 700;
     letter-spacing: -0.015em;
-    line-height: 1.08;
     text-wrap: balance;
   }
+
+  /* Default heading sizes come from the type scale; utilities override per section. */
+  h1 { font-size: var(--text-5xl); line-height: var(--text-5xl--line-height); }
+  h2 { font-size: var(--text-4xl); line-height: var(--text-4xl--line-height); }
+  h3 { font-size: var(--text-xl); line-height: var(--text-xl--line-height); }
+  h4 { font-size: var(--text-lg); line-height: var(--text-lg--line-height); }
 
   /* Figures that change (prices, totals, tables) keep their width. */
   td, th, .num {
