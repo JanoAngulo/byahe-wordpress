@@ -174,3 +174,13 @@ test.describe('tabular numbers', () => {
     expect(value).toContain('tabular-nums');
   });
 });
+
+test('header is off-white so it separates from the yellow hero', async ({ page }, info) => {
+  await page.goto('/components.html');
+  const cream = 'rgb(255, 248, 231)';
+  expect(await page.locator('.site-header').evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(cream);
+  if (info.project.name === 'mobile') {
+    await page.locator('[aria-controls="primary-menu"]').click();
+    expect(await page.locator('#primary-menu').evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(cream);
+  }
+});
