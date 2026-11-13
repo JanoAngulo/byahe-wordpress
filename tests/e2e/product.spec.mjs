@@ -89,3 +89,13 @@ test('home feature links land on product sections', async ({ page }) => {
     await expect(page.locator(`#${id}`)).toBeAttached();
   }
 });
+
+test('hero headline breaks only at the comma, into two lines', async ({ page }) => {
+  await page.goto('/product.html');
+  const lines = await page.locator('#product-title').evaluate((el) => {
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    return new Set([...range.getClientRects()].map((r) => Math.round(r.top))).size;
+  });
+  expect(lines).toBe(2);
+});
