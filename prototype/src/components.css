@@ -560,23 +560,27 @@
   .ui-sum .ui-row { padding-block: 0.25rem; border: 0; }
 
   /* Payment link with QR */
-  .ui-mockup--payment-qr { display: grid; gap: 1rem; }
+  .ui-mockup--payment-qr { display: grid; gap: 1.5rem; padding: 1.5rem; }
   @media (min-width: 480px) {
     .ui-mockup--payment-qr { grid-template-columns: auto 1fr; align-items: center; }
   }
   .ui-qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
     justify-self: center;
-    padding: 0.75rem;
+    padding: 1rem;
     background: var(--color-white);
     border: 2px solid var(--color-navy);
   }
   .ui-qr__code { display: block; width: 136px; height: 136px; fill: var(--color-navy); }
   .ui-qr__label {
-    margin-top: 0.5rem;
     text-align: center;
     font-weight: 700;
   }
-  .ui-methods { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+  .ui-pay { display: grid; gap: 0.25rem; }
+  .ui-mockup .ui-methods { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
   .ui-methods li {
     padding: 0.25rem 0.75rem;
     background: var(--color-yellow);

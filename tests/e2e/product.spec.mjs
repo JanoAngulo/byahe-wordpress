@@ -99,3 +99,24 @@ test('hero headline breaks only at the comma, into two lines', async ({ page }) 
   });
   expect(lines).toBe(2);
 });
+
+test.describe('payment QR mockup spacing', () => {
+  test('QR code is centered in its box and the caption clears the edge', async ({ page }) => {
+    await page.goto('/product.html');
+    const box = await page.locator('.ui-qr').boundingBox();
+    const code = await page.locator('.ui-qr__code').boundingBox();
+    const label = await page.locator('.ui-qr__label').boundingBox();
+    const leftGap = code.x - box.x;
+    const rightGap = box.x + box.width - (code.x + code.width);
+    expect(Math.abs(leftGap - rightGap)).toBeLessThan(1);
+    expect(box.y + box.height - (label.y + label.height)).toBeGreaterThanOrEqual(12);
+    expect(label.y - (code.y + code.height)).toBeGreaterThanOrEqual(8);
+  });
+
+  test('payment pills sit clear of the order text', async ({ page }) => {
+    await page.goto('/product.html');
+    const order = await page.locator('.ui-mockup--payment-qr .ui-order').boundingBox();
+    const methods = await page.locator('.ui-mockup--payment-qr .ui-methods').boundingBox();
+    expect(methods.y - (order.y + order.height)).toBeGreaterThanOrEqual(16);
+  });
+});
