@@ -50,7 +50,7 @@ Each page: build HTML prototype → **John reviews & approves** → convert to W
 | Product / Features | [x] | [x] | [ ] | [ ] | [ ] |
 | Pricing | [x] | [x] | [ ] | [ ] | [ ] |
 | Solutions (by business type) | [x] | [x] | [ ] | [ ] | [ ] |
-| About | [ ] | [ ] | [ ] | [ ] | [ ] |
+| About | [x] | [x] | [ ] | [ ] | [ ] |
 
 Shared parts for Phase 1:
 
