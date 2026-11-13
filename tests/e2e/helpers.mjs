@@ -109,6 +109,64 @@ export async function expectTypeOnScale(page) {
   expect(offenders, 'font sizes off the type scale').toEqual([]);
 }
 
+/**
+ * Nested corners: when a rounded box sits in a corner of a rounded parent,
+ * parent radius = child radius + gap between them (within 1px).
+ * Pills and circles are skipped; a "corner" means both gaps are under 48px.
+ */
+export async function expectConcentricCorners(page) {
+  const offenders = await page.evaluate(() => {
+    const radiusOf = (el) => {
+      const r = el.getBoundingClientRect();
+      const v = parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0;
+      const isPill = v >= Math.min(r.width, r.height) / 2 - 1;
+      return { v, isPill, r };
+    };
+    const out = [];
+    for (const el of document.querySelectorAll('body *')) {
+      if (el.parentElement?.closest('svg') || el.closest('.sr-only')) continue;
+      const cs = getComputedStyle(el);
+      if (cs.display === 'none' || cs.position === 'fixed') continue;
+      const child = radiusOf(el);
+      if (child.v === 0 || child.isPill || child.r.width === 0) continue;
+      let parentEl = el.parentElement;
+      let parent = null;
+      while (parentEl && parentEl !== document.body) {
+        const p = radiusOf(parentEl);
+        if (p.v > 0) { parent = { ...p, el: parentEl }; break; }
+        parentEl = parentEl.parentElement;
+      }
+      if (!parent || parent.isPill) continue;
+      const pcs = getComputedStyle(parent.el);
+      const inner = {
+        left: parent.r.left + parseFloat(pcs.borderLeftWidth),
+        top: parent.r.top + parseFloat(pcs.borderTopWidth),
+        right: parent.r.right - parseFloat(pcs.borderRightWidth),
+        bottom: parent.r.bottom - parseFloat(pcs.borderBottomWidth),
+      };
+      const gaps = {
+        left: child.r.left - inner.left,
+        top: child.r.top - inner.top,
+        right: inner.right - child.r.right,
+        bottom: inner.bottom - child.r.bottom,
+      };
+      const corners = [['top', 'left'], ['top', 'right'], ['bottom', 'left'], ['bottom', 'right']];
+      for (const [y, x] of corners) {
+        if (gaps[y] < 0 || gaps[x] < 0 || gaps[y] >= 48 || gaps[x] >= 48) continue;
+        const gap = (gaps[y] + gaps[x]) / 2;
+        const outerRadius = parent.v - parseFloat(pcs.borderTopWidth);
+        if (Math.abs(outerRadius - (child.v + gap)) > 1) {
+          const name = (n) => n.tagName.toLowerCase() + (typeof n.className === 'string' && n.className.trim() ? `.${n.className.trim().split(/\s+/)[0]}` : '');
+          out.push(`${name(el)} r=${child.v} in ${name(parent.el)} r=${parent.v} gap=${gap.toFixed(1)} (${y}-${x})`);
+          break;
+        }
+      }
+    }
+    return [...new Set(out)];
+  });
+  expect(offenders, 'nested corners where outer != inner + gap').toEqual([]);
+}
+
 export function runPageBasics(test, path) {
   test.describe(`page basics: ${path}`, () => {
     test.beforeEach(async ({ page }) => {
@@ -121,5 +179,6 @@ export function runPageBasics(test, path) {
     test('stops motion when reduced motion is preferred', async ({ page }) => expectNoMotionWhenReduced(page));
     test('keeps padding, margin and gap on a 4px grid', async ({ page }) => expectSpacingOnGrid(page));
     test('uses only type scale font sizes', async ({ page }) => expectTypeOnScale(page));
+    test('keeps nested corners concentric', async ({ page }) => expectConcentricCorners(page));
   });
 }

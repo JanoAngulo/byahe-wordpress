@@ -423,7 +423,9 @@
     stroke-linejoin: round;
     background: var(--color-yellow);
     border: 2px solid var(--color-navy);
-    border-radius: var(--radius-card);
+    /* Corner plate: sits 4px inside a 1.5rem-padded card. Card inner curve (10px - 2px border) = 4px radius + 4px gap. */
+    border-radius: 4px;
+    margin: -1.25rem 0 0 -1.25rem;
   }
 
   /* ---------- Numbered steps (a real sequence) ---------- */
