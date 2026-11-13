@@ -329,3 +329,159 @@
     margin-top: 1.5rem;
   }
 }
+
+@layer components {
+  /* ---------- Hero dashboard mockup ---------- */
+  .hero-dashboard {
+    padding: 1.25rem;
+    font-size: 0.875rem;
+  }
+  .hero-dashboard p { margin: 0; }
+  .hero-dashboard__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--color-navy);
+  }
+  .hero-dashboard__label { font-weight: 600; }
+  .hero-dashboard__total {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .hero-dashboard__delta { font-weight: 600; color: var(--color-blue); }
+  .hero-dashboard__chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    height: 72px;
+    min-width: 96px;
+  }
+  .hero-dashboard__chart span {
+    flex: 1;
+    height: var(--h);
+    background: var(--color-yellow);
+    border: 2px solid var(--color-navy);
+    border-radius: 4px 4px 0 0;
+    transform-origin: bottom;
+    animation: bar-rise 600ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .hero-dashboard__chart span:nth-child(2) { animation-delay: 60ms; }
+  .hero-dashboard__chart span:nth-child(3) { animation-delay: 120ms; }
+  .hero-dashboard__chart span:nth-child(4) { animation-delay: 180ms; }
+  .hero-dashboard__chart span:nth-child(5) { animation-delay: 240ms; }
+  .hero-dashboard__chart span:nth-child(6) { animation-delay: 300ms; }
+  .hero-dashboard__chart .is-current { background: var(--color-blue); }
+  .hero-dashboard__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .hero-dashboard__list li {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding-block: 0.75rem;
+  }
+  .hero-dashboard__list li + li { border-top: 1px dashed var(--color-navy); }
+  .hero-dashboard__list li > .num { font-weight: 700; text-align: right; }
+  .hero-dashboard__who {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    font-weight: 600;
+  }
+  .hero-dashboard__inv { font-size: 0.75rem; font-weight: 500; }
+
+  @keyframes bar-rise {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+}
+
+@layer components {
+  /* ---------- Feature card ---------- */
+  .feature-card {
+    height: 100%;
+    padding: 1.5rem;
+  }
+  .feature-card h3 { margin: 1rem 0 0.5rem; font-size: 1.375rem; }
+  .feature-card p { margin: 0; }
+  .feature-card__icon {
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+    fill: none;
+    stroke: var(--color-navy);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    background: var(--color-yellow);
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-card);
+  }
+
+  /* ---------- Numbered steps (a real sequence) ---------- */
+  .steps { counter-reset: step; }
+  .steps > li { counter-increment: step; }
+  .steps > li::before {
+    content: counter(step);
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    background: var(--color-red);
+    color: var(--color-white);
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Customer route plates ---------- */
+  .proof-list li {
+    padding: 0.5rem 0.875rem;
+    background: var(--color-white);
+    border: 2px solid var(--color-navy);
+    border-radius: 6px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+  .proof-list li:nth-child(3n + 1) { box-shadow: 3px 3px 0 var(--color-red); }
+  .proof-list li:nth-child(3n + 2) { box-shadow: 3px 3px 0 var(--color-blue); }
+  .proof-list li:nth-child(3n + 3) { box-shadow: 3px 3px 0 var(--color-yellow); }
+
+  /* ---------- Payment method chips ---------- */
+  .method-chips li {
+    padding: 0.5rem 1rem;
+    background: var(--color-yellow);
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-hard-sm);
+    font-weight: 700;
+  }
+
+  /* ---------- Initials avatar ---------- */
+  .avatar {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--color-yellow);
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-pill);
+    box-shadow: 3px 3px 0 var(--color-navy);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+}
