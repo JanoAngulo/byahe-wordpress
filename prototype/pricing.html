@@ -137,11 +137,17 @@
 
     <!-- FAQ -->
     <section id="faq" class="bg-cream" aria-labelledby="faq-title">
-      <div class="container py-16 md:py-24">
-        <div class="max-w-[56rem]">
-        <h2 id="faq-title" class="m-0 text-4xl">Mga tanong.</h2>
-        <p class="mt-4 mb-0 text-lg">Questions people ask before they sign up.</p>
-        <div class="faq mt-10">
+      <div class="container grid gap-10 py-16 md:py-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.75fr)] lg:gap-16 lg:items-start">
+        <div class="lg:sticky lg:top-8">
+          <h2 id="faq-title" class="m-0 text-4xl">Mga tanong.</h2>
+          <p class="mt-4 mb-0 text-lg">Questions people ask before they sign&nbsp;up.</p>
+          <div class="faq-cta card-hard mt-8 p-6">
+            <h3 class="mt-0 mb-2">Still deciding?</h3>
+            <p class="mt-0 mb-6">Start on Libre. It's free for your first 10 invoices a month, and you can upgrade any time.</p>
+            <button class="btn btn-primary" type="button" data-open-demo-dialog>Start free</button>
+          </div>
+        </div>
+        <div class="faq">
           <details>
             <summary>Is Libre really free?</summary>
             <p>Yes. Libre has no monthly fee and no time limit. You pay only the per-payment fee when a customer pays you, the same as on every plan.</p>
@@ -166,7 +172,6 @@
             <summary>Is BYAHE a real company?</summary>
             <p>No. BYAHE is a fictional company made up for a portfolio project. No accounts, no payments and no data are collected.</p>
           </details>
-        </div>
         </div>
       </div>
     </section>

@@ -156,3 +156,25 @@ test('FAQ toggle icon is drawn, not a font glyph', async ({ page }) => {
   expect(after.content).toBe('""');
   expect(after.bg).toContain('svg');
 });
+
+test.describe('FAQ two-column layout', () => {
+  test('questions sit beside the heading column on desktop, stacked on phones', async ({ page }, info) => {
+    await page.goto('/pricing.html');
+    const title = await page.locator('#faq-title').boundingBox();
+    const list = await page.locator('#faq .faq').boundingBox();
+    if (info.project.name === 'desktop') {
+      expect(list.x).toBeGreaterThan(title.x + 300);
+      expect(Math.abs(list.y - title.y)).toBeLessThan(40);
+    } else {
+      expect(list.y).toBeGreaterThan(title.y + title.height);
+    }
+  });
+
+  test('side card offers to start on Libre', async ({ page }) => {
+    await page.goto('/pricing.html');
+    const aside = page.locator('#faq .faq-cta');
+    await expect(aside).toContainText('Still deciding?');
+    await aside.locator('[data-open-demo-dialog]').click();
+    await expect(page.locator('#demo-dialog')).toBeVisible();
+  });
+});
