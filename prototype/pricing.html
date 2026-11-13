@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- @include head.html -->
+  <title>Pricing · BYAHE</title>
+  <meta name="description" content="BYAHE plans in pesos: Libre for up to 10 invoices a month, Negosyo at ₱499 and Pro at ₱1,499. Transaction fees, a full plan comparison and FAQ. BYAHE is a fictional company built as a portfolio project.">
+</head>
+<body data-page="pricing">
+  <!-- @include header.html -->
+
+  <main id="main">
+    <!-- Hero -->
+    <section id="pricing-hero" class="bg-yellow border-b-2 border-navy" aria-labelledby="pricing-title">
+      <div class="container pt-12 pb-16 md:pt-16 md:pb-20">
+        <h1 id="pricing-title" class="m-0 text-5xl md:text-6xl text-balance max-w-[14ch]">Malinaw na&nbsp;presyo.</h1>
+        <p class="mt-6 mb-0 max-w-[40rem] text-lg">Clear prices in pesos. Start free, upgrade when you outgrow it, and cancel any time. No setup fees, no surprise charges.</p>
+      </div>
+    </section>
+
+    <!-- Plans -->
+    <section id="plans" class="bg-cream border-b-2 border-navy" aria-labelledby="plans-title">
+      <div class="container py-16 md:py-24">
+        <div class="flex flex-wrap items-end justify-between gap-6">
+          <h2 id="plans-title" class="m-0 text-4xl">Pick your plan.</h2>
+          <div class="billing-toggle">
+            <span id="billing-label" class="billing-label">Bill yearly</span>
+            <button class="switch" type="button" role="switch" aria-checked="false" aria-labelledby="billing-label" data-billing-toggle></button>
+            <span class="pill pill-paid">2 months libre</span>
+          </div>
+        </div>
+        <p id="billing-status" class="sr-only" aria-live="polite"></p>
+
+        <ul class="mt-10 mb-0 p-0 list-none grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <li id="libre" class="card-hard tier">
+            <p class="tier__name">Libre</p>
+            <p class="tier__price"><span class="price num" data-monthly="₱0" data-yearly="₱0">₱0</span> <span class="price-period">forever</span></p>
+            <p class="tier__desc">For trying BYAHE or a side hustle.</p>
+            <ul class="tier__list">
+              <li>Up to <span class="num">10</span> invoices a month</li>
+              <li>Payment links and QR Ph</li>
+              <li>BIR-ready receipts</li>
+            </ul>
+            <button class="btn btn-secondary" type="button" data-open-demo-dialog>Start free</button>
+          </li>
+          <li id="negosyo" class="card-hard card-hard-lg tier bg-yellow!">
+            <p class="tier__name">Negosyo</p>
+            <span class="pill pill-pending tier__badge">Most popular</span>
+            <p class="tier__price"><span class="price num" data-monthly="₱499" data-yearly="₱4,990">₱499</span> <span class="price-period" data-monthly="per month" data-yearly="per year">per month</span></p>
+            <p class="tier__desc">For shops and cafés that invoice every day.</p>
+            <ul class="tier__list">
+              <li>Unlimited invoices</li>
+              <li>Automatic reminders</li>
+              <li>Everything in Libre</li>
+            </ul>
+            <button class="btn btn-primary" type="button" data-open-demo-dialog>Choose Negosyo</button>
+          </li>
+          <li id="pro" class="card-hard tier">
+            <p class="tier__name">Pro</p>
+            <p class="tier__price"><span class="price num" data-monthly="₱1,499" data-yearly="₱14,990">₱1,499</span> <span class="price-period" data-monthly="per month" data-yearly="per year">per month</span></p>
+            <p class="tier__desc">For teams with a cashier and a bookkeeper.</p>
+            <ul class="tier__list">
+              <li>Up to <span class="num">10</span> team members</li>
+              <li>Cash-flow dashboard</li>
+              <li>Webhooks and API</li>
+            </ul>
+            <button class="btn btn-secondary" type="button" data-open-demo-dialog>Choose Pro</button>
+          </li>
+          <li id="enterprise" class="card-hard tier">
+            <p class="tier__name">Enterprise</p>
+            <p class="tier__price"><span class="price-text font-heading font-bold text-3xl">Let's talk</span> <span class="price-period">custom pricing</span></p>
+            <p class="tier__desc">For chains, franchises and high volume.</p>
+            <ul class="tier__list">
+              <li>Volume pricing on fees</li>
+              <li>Custom roles and approvals</li>
+              <li>A dedicated contact</li>
+            </ul>
+            <button class="btn btn-secondary" type="button" data-open-demo-dialog>Talk to us</button>
+          </li>
+        </ul>
+        <p class="mt-8 mb-0 text-sm">Prices include VAT. Yearly plans are billed once a year.</p>
+      </div>
+    </section>
+
+    <!-- Fees -->
+    <section id="fees" class="bg-yellow border-b-2 border-navy" aria-labelledby="fees-title">
+      <div class="container grid gap-10 py-16 md:py-24 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+        <div>
+          <h2 id="fees-title" class="m-0 text-4xl">Fees per payment.</h2>
+          <p class="mt-4 mb-0 max-w-[32rem] text-lg">Same on every plan. You only pay when you get paid, and the fee shows on every transaction.</p>
+        </div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Transaction fees">
+          <table class="data-table">
+            <caption>Transaction fees</caption>
+            <thead>
+              <tr><th scope="col">Payment method</th><th scope="col">Fee</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">QR Ph</th><td>1.0%</td></tr>
+              <tr><th scope="row">Credit and debit cards</th><td>2.9% + ₱15</td></tr>
+              <tr><th scope="row">Bank transfer (InstaPay, PESONet)</th><td>₱10 flat</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compare -->
+    <section id="compare" class="bg-cream border-b-2 border-navy" aria-labelledby="compare-title">
+      <div class="container py-16 md:py-24">
+        <h2 id="compare-title" class="m-0 text-4xl">Compare every plan.</h2>
+        <div class="table-scroll mt-10" tabindex="0" role="region" aria-label="Plan comparison">
+          <table class="data-table data-table--compare">
+            <caption>What's in each plan</caption>
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">Libre</th>
+                <th scope="col" class="is-featured">Negosyo</th>
+                <th scope="col">Pro</th>
+                <th scope="col">Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Invoices per month</th><td>10</td><td class="is-featured">Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+              <tr><th scope="row">Payment links and QR Ph</th><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td><td class="is-featured"><span class="mark mark--yes"><span class="sr-only">Included</span></span></td><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td></tr>
+              <tr><th scope="row">BIR-ready receipts</th><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td><td class="is-featured"><span class="mark mark--yes"><span class="sr-only">Included</span></span></td><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td></tr>
+              <tr><th scope="row">Automatic reminders</th><td><span class="mark">–<span class="sr-only">Not included</span></span></td><td class="is-featured"><span class="mark mark--yes"><span class="sr-only">Included</span></span></td><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td></tr>
+              <tr><th scope="row">Cash-flow dashboard</th><td><span class="mark">–<span class="sr-only">Not included</span></span></td><td class="is-featured"><span class="mark">–<span class="sr-only">Not included</span></span></td><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td></tr>
+              <tr><th scope="row">Team members</th><td>1</td><td class="is-featured">2</td><td>10</td><td>Unlimited</td></tr>
+              <tr><th scope="row">Webhooks and API</th><td><span class="mark">–<span class="sr-only">Not included</span></span></td><td class="is-featured"><span class="mark">–<span class="sr-only">Not included</span></span></td><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td><td><span class="mark mark--yes"><span class="sr-only">Included</span></span></td></tr>
+              <tr><th scope="row">Support</th><td>Email</td><td class="is-featured">Email and chat</td><td>Priority chat</td><td>Dedicated contact</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="bg-cream" aria-labelledby="faq-title">
+      <div class="container py-16 md:py-24">
+        <div class="max-w-[56rem]">
+        <h2 id="faq-title" class="m-0 text-4xl">Mga tanong.</h2>
+        <p class="mt-4 mb-0 text-lg">Questions people ask before they sign up.</p>
+        <div class="faq mt-10">
+          <details>
+            <summary>Is Libre really free?</summary>
+            <p>Yes. Libre has no monthly fee and no time limit. You pay only the per-payment fee when a customer pays you, the same as on every plan.</p>
+          </details>
+          <details>
+            <summary>Can I switch plans later?</summary>
+            <p>Any time. Upgrades start right away. Downgrades take effect at the end of your current billing period, and you keep your invoices and receipts.</p>
+          </details>
+          <details>
+            <summary>Do my customers need the BYAHE app?</summary>
+            <p>No. They pay from the link or QR code with the bank or e-wallet app they already use, or with a card in their browser.</p>
+          </details>
+          <details>
+            <summary>When does the money reach my bank?</summary>
+            <p>QR Ph and InstaPay payments settle the same day. Card payments and PESONet settle the next banking day.</p>
+          </details>
+          <details>
+            <summary>Are the receipts accepted by the BIR?</summary>
+            <p>In a real product they would follow BIR receipt rules. BYAHE is a demo company, so nothing here is a valid BIR document.</p>
+          </details>
+          <details>
+            <summary>Is BYAHE a real company?</summary>
+            <p>No. BYAHE is a fictional company made up for a portfolio project. No accounts, no payments and no data are collected.</p>
+          </details>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stripe" aria-hidden="true"></div>
+
+    <!-- @include cta-band.html -->
+  </main>
+
+  <!-- @include footer.html -->
+  <!-- @include demo-dialog.html -->
+  <script type="module" src="/src/pricing.js"></script>
+</body>
+</html>

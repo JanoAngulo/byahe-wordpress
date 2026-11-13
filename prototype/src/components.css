@@ -114,6 +114,7 @@
     font-size: var(--text-sm);
     font-weight: 700;
     line-height: 1.4;
+    white-space: nowrap;
   }
   .pill-paid { background: var(--color-yellow); color: var(--color-navy); }
   .pill-pending { background: var(--color-white); color: var(--color-navy); }
@@ -740,4 +741,180 @@
     text-decoration: none;
   }
   .feature-jump a:hover { background: var(--color-yellow); }
+}
+
+@layer components {
+  /* ---------- Billing toggle (role="switch") ---------- */
+  .billing-toggle { display: none; }
+  .js .billing-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .switch {
+    position: relative;
+    width: 4rem;
+    height: 2.25rem;
+    padding: 0;
+    background: var(--color-white);
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-hard-sm);
+    cursor: pointer;
+    transition: background-color 150ms ease-out;
+  }
+  .switch::after {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-navy);
+    border-radius: var(--radius-pill);
+    transition: transform 150ms ease-out;
+  }
+  .switch[aria-checked="true"] { background: var(--color-blue); }
+  .switch[aria-checked="true"]::after { transform: translateX(1.75rem); background: var(--color-yellow); }
+  .billing-label { font-weight: 700; }
+
+  /* ---------- Pricing tier cards ---------- */
+  .tier {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    padding: 1.5rem;
+    scroll-margin-top: 1.5rem;
+  }
+  .tier__name {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 700;
+  }
+  .tier { position: relative; }
+  /* Badge rides the top border so it never pushes the price down. */
+  .tier__badge { position: absolute; top: -1rem; right: 1.5rem; }
+  .tier__price { margin: 0; }
+  .tier__price .price {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    font-weight: 700;
+  }
+  /* Period sits on its own line so the billing toggle never reflows the card. */
+  .tier__price .price-period { display: block; margin-top: 0.25rem; font-weight: 600; }
+  .tier__desc { margin: 0; }
+  .tier__list {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 1rem 0 0;
+    list-style: none;
+    border-top: 2px dashed var(--color-navy);
+  }
+  .tier__list li { position: relative; padding-left: 1.75rem; }
+  .tier__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2313205C' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .tier .btn { margin-top: auto; align-self: flex-start; }
+
+  /* ---------- Data tables ---------- */
+  .table-scroll {
+    /* Positioned so sr-only labels inside cells stay inside the scroll box. */
+    position: relative;
+    overflow-x: auto;
+    background: var(--color-white);
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-hard-lg);
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  .data-table caption {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-navy);
+  }
+  .data-table th,
+  .data-table td { padding: 1rem 1.5rem; vertical-align: top; }
+  .data-table thead th { background: var(--color-yellow); border-bottom: 2px solid var(--color-navy); }
+  .data-table tbody tr + tr th,
+  .data-table tbody tr + tr td { border-top: 1px dashed var(--color-navy); }
+  .data-table tbody th { font-weight: 600; }
+  .data-table--compare { min-width: 44rem; }
+  .data-table--compare td,
+  .data-table--compare thead th:not(:first-child) { text-align: center; }
+  .data-table .is-featured { background: var(--color-cream); }
+  .data-table thead .is-featured { background: var(--color-blue); color: var(--color-white); }
+  .mark {
+    display: inline-grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-weight: 700;
+  }
+  .mark--yes {
+    background: var(--color-yellow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2313205C' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 12px no-repeat;
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-pill);
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq { display: grid; gap: 1rem; }
+  .faq details {
+    background: var(--color-white);
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-hard-sm);
+  }
+  .faq summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+";
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2rem;
+    height: 2rem;
+    background: var(--color-yellow);
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    line-height: 1;
+  }
+  .faq details[open] summary::after { content: "−"; }
+  .faq details[open] summary { border-bottom: 2px dashed var(--color-navy); }
+  .faq details p { margin: 0; padding: 1rem 1.5rem 1.5rem; max-width: 65ch; }
 }
