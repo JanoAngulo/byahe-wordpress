@@ -120,3 +120,15 @@ test.describe('payment QR mockup spacing', () => {
     expect(methods.y - (order.y + order.height)).toBeGreaterThanOrEqual(16);
   });
 });
+
+test('every product screen is a white card as wide as its column', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'desktop only');
+  await page.goto('/product.html');
+  for (const id of FEATURES) {
+    const mock = page.locator(`#${id} .ui-mockup`);
+    expect(await mock.evaluate((el) => getComputedStyle(el).backgroundColor), id).toBe('rgb(255, 255, 255)');
+    const textCol = await page.locator(`#${id} h2`).evaluate((el) => el.closest('.container > div').getBoundingClientRect().width);
+    const mockWidth = (await mock.boundingBox()).width;
+    expect(Math.abs(mockWidth - textCol), id).toBeLessThan(2);
+  }
+});

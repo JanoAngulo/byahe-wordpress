@@ -658,13 +658,33 @@
   .ui-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1rem; }
   .ui-stat { padding: 0.75rem; background: var(--color-cream); border: 2px solid var(--color-navy); }
 
-  /* BIR receipt */
-  .ui-mockup--bir-receipt { max-width: 26rem; background: var(--color-cream); }
+  /* BIR receipt: app card holding a paper slip plus what happened automatically */
+  .ui-receipt-layout { display: grid; gap: 1.5rem; }
+  @media (min-width: 480px) {
+    .ui-receipt-layout { grid-template-columns: 1.15fr 1fr; align-items: start; }
+  }
+  .ui-receipt {
+    padding: 1rem;
+    background: var(--color-cream);
+    border: 2px solid var(--color-navy);
+  }
   .ui-receipt-head { text-align: center; padding-bottom: 0.75rem; border-bottom: 2px dashed var(--color-navy); }
-  .ui-receipt-head .ui-title { letter-spacing: 0.04em; }
   .ui-receipt-body { padding-block: 0.75rem; border-bottom: 2px dashed var(--color-navy); }
   .ui-receipt-body .ui-row { padding-block: 0.25rem; border: 0; }
   .ui-receipt-foot { padding-top: 0.75rem; text-align: center; }
+  .ui-mockup .ui-checklist { display: grid; gap: 1rem; }
+  .ui-checklist li { position: relative; padding-left: 2rem; }
+  .ui-checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.125rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--color-yellow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2313205C' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 12px no-repeat;
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-pill);
+  }
 
   /* Team roles */
   .ui-team li {
