@@ -146,3 +146,13 @@ test('plan names and prices line up across cards on desktop', async ({ page }, i
     expect(new Set(ys).size, sel).toBe(1);
   }
 });
+
+test('FAQ toggle icon is drawn, not a font glyph', async ({ page }) => {
+  await page.goto('/pricing.html');
+  const after = await page.locator('#faq summary').first().evaluate((el) => {
+    const cs = getComputedStyle(el, '::after');
+    return { content: cs.content, bg: cs.backgroundImage };
+  });
+  expect(after.content).toBe('""');
+  expect(after.bg).toContain('svg');
+});
