@@ -14,7 +14,10 @@
 
 - Brand: **Full Jeepney**. Yellow and blue everywhere, red/yellow/blue stripe dividers, hard offset shadows on cards, pill buttons (spec §6.1).
 - Colors: yellow `#FFC93C`, blue `#1D3FBB`, navy `#13205C`, red `#D62828`, cream `#FFF8E7`, white `#FFFFFF` (spec §6.2).
-- Fonts: Space Grotesk 500/700 for headings, Inter 400/500/600 for body. Self-hosted, never loaded from Google at runtime.
+- Fonts: **Cubao Free** (display: h1, h2, wordmark; single weight, never faux-bold), Space Grotesk 500/700 for h3/h4, UI headings and all big figures, Inter 400/500/600 for body. All self-hosted, never loaded from Google at runtime. Cubao digits are proportional, so prices and totals stay in Space Grotesk with `.num`.
+- Type: only the fluid scale steps `sm, base, lg, xl, 2xl..6xl` (Tailwind `text-*`, CSS `var(--text-*)`). No arbitrary sizes.
+- Spacing: padding, margin and gap on a 4px grid.
+- Corners: nested rounded boxes in a corner follow outer radius = inner radius + gap.
 - Shadows: `4px 4px 0 #13205C` (sm), `8px 8px 0 #13205C` (lg). Border `2px solid #13205C`. Radius `10px` for cards, `999px` for buttons and pills.
 - Contrast: WCAG 2.2 AA on every pair. Red on yellow only for large text (≥24px, or ≥18.66px bold) and non-text. Never navy on blue (spec §6.4).
 - Voice: English with short Taglish punchlines in headlines and CTAs. Body, legal and security text in plain English.

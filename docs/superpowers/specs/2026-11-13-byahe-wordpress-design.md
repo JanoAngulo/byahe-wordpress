@@ -63,7 +63,8 @@ Yellow and blue everywhere, red/yellow/blue stripe dividers, hard offset shadows
 | `red` | `#D62828` | accents, alerts, stripe |
 | `cream` | `#FFF8E7` | light section background (call) |
 | `white` | `#FFFFFF` | cards |
-| Headings | Space Grotesk 500/700 | |
+| Display | Cubao Free (variable width), by Aaron Amar | h1, h2, wordmark |
+| Headings | Space Grotesk 500/700 | h3/h4, UI headings, all figures |
 | Body | Inter 400/500/600 | |
 | Shadow `hard` | `4px 4px 0 navy` (sm), `8px 8px 0 navy` (lg) | |
 | Border | `2px solid navy` | cards, inputs |

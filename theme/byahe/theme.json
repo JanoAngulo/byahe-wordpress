@@ -47,6 +47,11 @@
 			"defaultFontSizes": false,
 			"fontFamilies": [
 				{
+					"slug": "display",
+					"name": "Cubao Free",
+					"fontFamily": "\"Cubao Free\", \"Space Grotesk Variable\", system-ui, sans-serif"
+				},
+				{
 					"slug": "heading",
 					"name": "Space Grotesk",
 					"fontFamily": "\"Space Grotesk Variable\", system-ui, sans-serif"

@@ -184,3 +184,33 @@ test('header is off-white so it separates from the yellow hero', async ({ page }
     expect(await page.locator('#primary-menu').evaluate((el) => getComputedStyle(el).backgroundColor)).toBe(cream);
   }
 });
+
+test.describe('Cubao display font', () => {
+  test('h1 and h2 use self-hosted Cubao and it loads', async ({ page }) => {
+    await page.goto('/components.html');
+    await page.evaluate(() => document.fonts.ready);
+    for (const sel of ['h1', 'main h2']) {
+      const family = await page.locator(sel).first().evaluate((el) => getComputedStyle(el).fontFamily);
+      expect(family.startsWith('"Cubao Free"')).toBe(true);
+    }
+    expect(await page.evaluate(() => document.fonts.check('40px "Cubao Free"'))).toBe(true);
+  });
+
+  test('display text never uses a synthesized bold', async ({ page }) => {
+    await page.goto('/components.html');
+    const synth = await page.locator('h1').evaluate((el) => getComputedStyle(el).fontSynthesisWeight);
+    expect(synth).toBe('none');
+  });
+
+  test('wordmark uses Cubao', async ({ page }) => {
+    await page.goto('/components.html');
+    const family = await page.locator('.wordmark__plate').first().evaluate((el) => getComputedStyle(el).fontFamily);
+    expect(family.startsWith('"Cubao Free"')).toBe(true);
+  });
+
+  test('h3 card titles stay on Space Grotesk', async ({ page }) => {
+    await page.goto('/components.html');
+    const family = await page.locator('main h3').first().evaluate((el) => getComputedStyle(el).fontFamily);
+    expect(family.startsWith('"Space Grotesk Variable"')).toBe(true);
+  });
+});

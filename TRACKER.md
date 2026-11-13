@@ -17,7 +17,7 @@ Built as static HTML + Tailwind CSS first, then converted into a custom WordPres
 | Working name | BYAHE (can change) |
 | Brand | **Full Jeepney**: loud yellow/blue everywhere, stripes, hard offset shadows |
 | Palette | Yellow `#FFC93C` · Royal blue `#1D3FBB` · Navy `#13205C` · Red `#D62828` |
-| Type | Space Grotesk (headings) · Inter (body) |
+| Type | Cubao Free (display h1/h2, wordmark) · Space Grotesk (headings, figures) · Inter (body); fluid modular scale |
 | Voice | English with Taglish punchlines ("Bayad na, tuloy ang byahe.") |
 | Workflow | HTML + Tailwind prototype → WordPress block theme |
 | Local dev | WordPress Playground CLI (no Docker) |

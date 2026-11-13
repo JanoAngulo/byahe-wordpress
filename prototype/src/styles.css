@@ -4,6 +4,16 @@
 @import "@fontsource-variable/space-grotesk";
 @import "./components.css";
 
+/* Cubao Free by Aaron Amar (aaronamar.gumroad.com). Variable width axis 64-177. */
+@font-face {
+  font-family: "Cubao Free";
+  src: url("./fonts/cubao-free-variable.woff2") format("woff2") tech(variations),
+       url("./fonts/cubao-free-variable.woff2") format("woff2");
+  font-weight: 400;
+  font-stretch: 64% 177%;
+  font-display: swap;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -23,6 +33,14 @@
     font-weight: 700;
     letter-spacing: -0.015em;
     text-wrap: balance;
+  }
+
+  /* Display voice: Cubao for h1 and h2. Single weight, so never synthesize bold. */
+  h1, h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-synthesis: none;
+    letter-spacing: 0;
   }
 
   /* Default heading sizes come from the type scale; utilities override per section. */
