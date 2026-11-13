@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const PAGES = ['/index.html', '/product.html', '/pricing.html', '/solutions.html', '/about.html', '/components.html'];
-const REPO = 'https://github.com/JanoAngulo';
+const REPO = 'https://github.com/JanoAngulo/byahe-wordpress';
 
 test.beforeEach(({}, info) => test.skip(info.project.name !== 'desktop', 'links are the same at every width'));
 

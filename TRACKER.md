@@ -109,7 +109,7 @@ Blocks:
 - [ ] ESLint passing
 - [ ] GitHub Actions CI (lint on push)
 - [ ] README with one-command setup + Playground demo link
-- [ ] Swap the "View the code on GitHub" links (footer, About, demo dialog) from the profile URL to the repo URL once it is public
+- [x] "View the code on GitHub" links (footer, About, demo dialog) point at github.com/JanoAngulo/byahe-wordpress
 - [ ] 1–2 min screen recording of editing a page in WordPress
 - [ ] Add to portfolio (jrla1219.web.app) + LinkedIn
 
