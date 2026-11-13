@@ -19,7 +19,16 @@ for (const path of PAGES) {
         if (!el || el === document.body) return null;
         const s = getComputedStyle(el);
         const r = el.getBoundingClientRect();
-        const ring = (s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) >= 2) || (s.boxShadow && s.boxShadow !== 'none');
+        // Compare against an unfocused clone in the same spot: a resting hard shadow is not a focus ring.
+        const clone = el.cloneNode(true);
+        clone.removeAttribute('id');
+        clone.style.visibility = 'hidden';
+        el.after(clone);
+        const rest = getComputedStyle(clone);
+        const outline = s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) >= 2 && rest.outlineStyle === 'none';
+        const shadow = s.boxShadow !== rest.boxShadow;
+        clone.remove();
+        const ring = outline || shadow;
         return {
           html: el.outerHTML,
           label: `${el.tagName.toLowerCase()} "${(el.textContent || el.getAttribute('aria-label') || '').trim().slice(0, 40)}"`,
