@@ -46,6 +46,38 @@ export async function expectNoMotionWhenReduced(page) {
   expect(offenders, 'elements still animating with reduced motion').toEqual([]);
 }
 
+export async function expectSpacingOnGrid(page, grid = 4) {
+  const offenders = await page.evaluate((base) => {
+    const props = ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft', 'marginTop', 'marginRight', 'marginBottom', 'marginLeft', 'rowGap', 'columnGap'];
+    const out = new Set();
+    for (const el of document.querySelectorAll('body *')) {
+      if (el.closest('svg') || el.closest('.sr-only') || el.matches('script, style, br')) continue;
+      const cs = getComputedStyle(el);
+      if (cs.display === 'none') continue;
+      for (const prop of props) {
+        const value = parseFloat(cs[prop]);
+        if (Number.isNaN(value) || value === 0) continue;
+        if (prop.startsWith('margin')) {
+          // Skip margins set to `auto` (centering, push-right): their pixel value is layout-derived.
+          const original = cs[prop];
+          const before = el.style[prop];
+          el.style[prop] = 'auto';
+          const isAuto = getComputedStyle(el)[prop] === original;
+          el.style[prop] = before;
+          if (isAuto) continue;
+        }
+        const rest = Math.abs(value) % base;
+        if (rest > 0.01 && base - rest > 0.01) {
+          const cls = typeof el.className === 'string' && el.className.trim() ? `.${el.className.trim().split(/\s+/)[0]}` : '';
+          out.add(`${el.tagName.toLowerCase()}${cls} ${prop}=${cs[prop]}`);
+        }
+      }
+    }
+    return [...out];
+  }, grid);
+  expect(offenders, `spacing values off the ${grid}px grid`).toEqual([]);
+}
+
 export function runPageBasics(test, path) {
   test.describe(`page basics: ${path}`, () => {
     test.beforeEach(async ({ page }) => {
@@ -56,5 +88,6 @@ export function runPageBasics(test, path) {
     test('has exactly one h1', async ({ page }) => expectSingleH1(page));
     test('has header, nav, main and footer landmarks', async ({ page }) => expectLandmarks(page));
     test('stops motion when reduced motion is preferred', async ({ page }) => expectNoMotionWhenReduced(page));
+    test('keeps padding, margin and gap on a 4px grid', async ({ page }) => expectSpacingOnGrid(page));
   });
 }
