@@ -5,6 +5,8 @@
  * - `?byahe_test_price=1` on any request sets the Negosyo monthly price to 555,
  *   so specs can prove one data edit reaches every place a price shows.
  * - `byahe-test/v1/field` exposes Byahe\Core\tier_field() for direct checks.
+ * - `byahe-test/v1/seed` (POST) re-runs the demo seeder, so a reused dev
+ *   server picks up pattern changes without a restart.
  *
  * @package ByaheTests
  */
@@ -39,6 +41,19 @@ add_action(
 							(string) ( $request->get_param( 'billing' ) ?? 'monthly' )
 						),
 					);
+				},
+			)
+		);
+
+		register_rest_route(
+			'byahe-test/v1',
+			'/seed',
+			array(
+				'methods'             => 'POST',
+				'permission_callback' => '__return_true',
+				'callback'            => static function () {
+					require_once BYAHE_CORE_DIR . '/inc/class-seeder.php';
+					return \Byahe\Core\Seeder::seed();
 				},
 			)
 		);

@@ -1,0 +1,208 @@
+/*
+ * Glue between core block markup and the prototype's look. Prototype
+ * components (components.css) style the same class names used in patterns;
+ * this file covers what only exists in WordPress.
+ */
+
+/* ---------- Base ---------- */
+h1,
+ h2 {
+	font-synthesis: none;
+}
+
+h1,
+ h2,
+ h3,
+ h4 {
+	text-wrap: balance;
+}
+
+/*
+ * Global blockGap is 0 so pattern utility classes alone decide spacing, as in
+ * the prototype. Content a marketer adds still gets readable spacing; :where()
+ * keeps this at zero specificity so any utility class wins.
+ */
+:where(.is-layout-flow, .is-layout-constrained) > :where(p, ul, ol, .wp-block-heading, .wp-block-buttons, .wp-block-image, .wp-block-details, .wp-block-table) + :where(p, ul, ol, .wp-block-heading, .wp-block-buttons, .wp-block-image, .wp-block-details, .wp-block-table) {
+	margin-block-start: 1rem;
+}
+
+.wp-block-buttons {
+	gap: 0.75rem;
+}
+
+/* ---------- Buttons ---------- */
+.wp-element-button,
+.wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	min-height: 44px;
+	white-space: nowrap;
+	transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+}
+
+.wp-element-button:hover,
+.wp-block-button__link:hover {
+	transform: translate(-2px, -2px);
+	box-shadow: var(--shadow-hard-md);
+}
+
+.wp-element-button:active,
+.wp-block-button__link:active {
+	transform: translate(2px, 2px);
+	box-shadow: 0 0 0 var(--color-navy);
+}
+
+.wp-block-button.is-style-secondary .wp-block-button__link {
+	background: var(--color-white);
+	color: var(--color-navy);
+}
+
+.wp-block-button.is-style-accent .wp-block-button__link {
+	background: var(--color-yellow);
+	color: var(--color-navy);
+}
+
+/* ---------- Block styles ---------- */
+.wp-block-group.is-style-hard-shadow,
+.wp-block-group.is-style-hard-shadow-lg {
+	background: var(--color-white);
+	color: var(--color-navy);
+	border: 2px solid var(--color-navy);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-hard-sm);
+}
+
+.wp-block-group.is-style-hard-shadow-lg {
+	box-shadow: var(--shadow-hard-lg);
+}
+
+.wp-block-separator.is-style-stripe {
+	width: 100%;
+	max-width: none;
+	height: 10px;
+	margin: 0;
+	background:
+ repeating-linear-gradient(90deg, var(--color-red) 0 40px, var(--color-yellow) 40px 80px, var(--color-blue) 80px 120px);
+	border: 0;
+	border-block: 2px solid var(--color-navy);
+	opacity: 1;
+}
+
+p.is-style-pill {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.25rem 0.75rem;
+	border: 2px solid var(--color-navy);
+	border-radius: var(--radius-pill);
+	font-size: var(--text-sm);
+	font-weight: 700;
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
+/* ---------- Header ---------- */
+.site-header .site-header__inner > * {
+	margin-block: 0;
+}
+
+.site-header .primary-nav {
+	order: 0;
+	flex-basis: auto;
+	margin-left: auto;
+}
+
+.site-header .header-cta {
+	margin-left: 0;
+}
+
+.primary-nav .wp-block-navigation__container {
+	gap: 0.25rem 1.25rem;
+}
+
+.primary-nav .wp-block-navigation-item__content {
+	display: inline-block;
+	padding: 0.5rem 0;
+	color: var(--color-navy);
+	font-weight: 600;
+	text-decoration: none;
+	border-bottom: 3px solid transparent;
+}
+
+.primary-nav .wp-block-navigation-item__content:hover {
+	border-bottom-color: var(--color-navy);
+}
+
+.primary-nav .wp-block-navigation-item__content[aria-current="page"] {
+	border-bottom-color: var(--color-blue);
+}
+
+.primary-nav .wp-block-navigation__responsive-container-open,
+.primary-nav .wp-block-navigation__responsive-container-close {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	background: var(--color-white);
+	color: var(--color-navy);
+	border: 2px solid var(--color-navy);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-hard-sm);
+	cursor: pointer;
+}
+
+.primary-nav .wp-block-navigation__responsive-container-close {
+	top: 0.75rem;
+	right: 1rem;
+}
+
+@media (min-width: 600px) {
+
+	.primary-nav .wp-block-navigation__responsive-container-open {
+		display: none;
+	}
+}
+
+.primary-nav .wp-block-navigation__responsive-container.is-menu-open {
+	padding: 4.5rem 1rem 1rem;
+}
+
+.primary-nav .is-menu-open .wp-block-navigation__container {
+	gap: 0;
+	width: 100%;
+}
+
+.primary-nav .is-menu-open .wp-block-navigation-item {
+	width: 100%;
+}
+
+.primary-nav .is-menu-open .wp-block-navigation-item__content {
+	display: block;
+	width: 100%;
+	padding: 1rem 0;
+	font-family: var(--font-heading);
+	font-size: var(--text-xl);
+	border-bottom: 2px solid var(--color-navy);
+}
+
+.primary-nav .is-menu-open .wp-block-navigation-item__content[aria-current="page"] {
+	color: var(--color-blue);
+}
+
+/* ---------- Footer ---------- */
+.site-footer .site-footer__inner > *,
+.site-footer .site-footer__nav > * {
+	margin-block: 0;
+}
+
+.site-footer .site-footer__brand p:first-child {
+	margin-top: 0;
+}
+
+.site-footer .site-footer__nav .wp-block-list {
+	margin-block: 0;
+	padding: 0;
+	list-style: none;
+}

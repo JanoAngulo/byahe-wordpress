@@ -1,13 +1,17 @@
 /*
  * WordPress stylesheet for the BYAHE theme. Tailwind without preflight:
- * theme.json and core styles handle the reset.
+ * theme.json and core styles handle the reset. scripts/unlayer-css.mjs
+ * removes the cascade layers after the build (see that file for why).
  */
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
 @import "../../../prototype/src/tokens.css";
+@import "../../../prototype/src/base.css";
 @import "../../../prototype/src/components.css";
+@import "./wp.css";
 
 @source "../patterns";
 @source "../parts";
 @source "../templates";
+@source "../inc";
 @source "../../../plugins/byahe-core/src";

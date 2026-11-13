@@ -1,0 +1,13 @@
+{
+	"extends": "@wordpress/stylelint-config",
+	"rules": {
+		"at-rule-no-unknown": [
+			true,
+			{
+				"ignoreAtRules": [ "source", "theme", "utility", "variant", "custom-variant", "apply" ]
+			}
+		],
+		"at-rule-empty-line-before": null,
+		"selector-class-pattern": null
+	}
+}

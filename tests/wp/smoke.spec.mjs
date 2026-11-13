@@ -7,7 +7,7 @@ test('home responds with the byahe theme', async ({ page }) => {
   await expect(page.locator('body')).toHaveClass(/wp-theme-byahe/);
 });
 
-test.fixme('loads the compiled theme stylesheet', async ({ page }) => {
+test('loads the compiled theme stylesheet', async ({ page }) => {
   await page.goto(PAGES.home);
   await expect(page.locator('link[rel="stylesheet"][href*="themes/byahe/assets/css/theme.css"]')).toHaveCount(1);
 });

@@ -23,5 +23,6 @@ require_once __DIR__ . '/inc/bindings.php';
 require_once __DIR__ . '/inc/blocks.php';
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	require_once __DIR__ . '/inc/class-seeder.php';
 	require_once __DIR__ . '/inc/class-seed-command.php';
 }

@@ -7,6 +7,12 @@
   },
   "steps": [
     {
+      "step": "defineWpConfigConsts",
+      "consts": {
+        "WP_DEVELOPMENT_MODE": "all"
+      }
+    },
+    {
       "step": "activateTheme",
       "themeFolderName": "byahe"
     },
