@@ -47,7 +47,7 @@ Each page: build HTML prototype → **John reviews & approves** → convert to W
 |---|---|---|---|---|---|
 | Shared components | [x] | [x] | [ ] | — | [ ] |
 | Home | [x] | [x] | [ ] | [ ] | [ ] |
-| Product / Features | [ ] | [ ] | [ ] | [ ] | [ ] |
+| Product / Features | [x] | [x] | [ ] | [ ] | [ ] |
 | Pricing | [ ] | [ ] | [ ] | [ ] | [ ] |
 | Solutions (by business type) | [ ] | [ ] | [ ] | [ ] | [ ] |
 | About | [ ] | [ ] | [ ] | [ ] | [ ] |
