@@ -36,3 +36,15 @@ for (const path of PAGES) {
     }
   });
 }
+
+test('demo dialog triggers are links that still go somewhere without JavaScript', async ({ page }) => {
+  for (const path of ['/pricing.html', '/components.html']) {
+    await page.goto(path);
+    const triggers = page.locator('[data-open-demo-dialog]');
+    expect(await triggers.count(), path).toBeGreaterThan(0);
+    for (const t of await triggers.all()) {
+      expect(await t.evaluate((el) => el.tagName), path).toBe('A');
+      await expect(t).toHaveAttribute('href', 'about.html#demo-note');
+    }
+  }
+});
