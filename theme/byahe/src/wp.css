@@ -206,3 +206,42 @@ p.is-style-pill {
 	padding: 0;
 	list-style: none;
 }
+
+/* ---------- Sections ---------- */
+
+/* Photos fill their aspect-ratio frame, as in the prototype. */
+.wp-block-image.photo-duotone img {
+	height: 100%;
+}
+
+/* Whole-card links: the heading link stretches over the card. */
+.has-stretched-link {
+	position: relative;
+	transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+}
+
+.has-stretched-link h3 a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.has-stretched-link h3 a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.has-stretched-link:hover {
+	transform: translate(-2px, -2px);
+	box-shadow: var(--shadow-hard-md);
+}
+
+/* Pricing cards: the button sits at the bottom, like .tier .btn. */
+.tier .wp-block-buttons {
+	margin-top: auto;
+	align-self: flex-start;
+}
+
+.tier__price p {
+	margin: 0;
+}

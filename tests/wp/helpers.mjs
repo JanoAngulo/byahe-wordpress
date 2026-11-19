@@ -48,3 +48,44 @@ export async function withBlockPage(browser, baseURL, viewport, content, fn) {
     await admin.close();
   }
 }
+
+/** Path + hash of a link, for comparing hrefs against PAGES. */
+export const pathOf = (href) => {
+  const url = new URL(href);
+  return url.pathname + url.hash;
+};
+
+/** Id of a seeded page by slug. */
+export async function pageId(page, slug) {
+  const res = await page.request.get(`/?rest_route=/wp/v2/pages&slug=${slug}&_fields=id`);
+  const [first] = await res.json();
+  return first.id;
+}
+
+/**
+ * Opens a post in the block editor and returns every block that fails
+ * validation, with the markup the editor expected.
+ */
+export async function invalidBlocks(page, postId) {
+  await page.goto(`/wp-admin/post.php?post=${postId}&action=edit`);
+  await page.waitForFunction(() => window.wp?.data?.select('core/block-editor')?.getBlocks().length > 0, null, { timeout: 60_000 });
+  // Close the welcome guide if it shows.
+  await page.evaluate(() => window.wp.data.dispatch('core/preferences')?.set('core/edit-post', 'welcomeGuide', false));
+  return page.evaluate(() => {
+    const out = [];
+    const walk = (blocks) => {
+      for (const b of blocks) {
+        if (b.isValid === false) {
+          out.push({
+            name: b.name,
+            expected: window.wp.blocks.getSaveContent(b.name, b.attributes, b.innerBlocks).slice(0, 400),
+            actual: (b.originalContent ?? '').slice(0, 400),
+          });
+        }
+        walk(b.innerBlocks);
+      }
+    };
+    walk(window.wp.data.select('core/block-editor').getBlocks());
+    return out;
+  });
+}
