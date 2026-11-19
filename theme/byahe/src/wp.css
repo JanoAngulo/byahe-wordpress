@@ -242,6 +242,6 @@ p.is-style-pill {
 	align-self: flex-start;
 }
 
-.tier__price p {
+.tier__price > :where(p) {
 	margin: 0;
 }
