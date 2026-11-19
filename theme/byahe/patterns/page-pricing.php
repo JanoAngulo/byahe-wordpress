@@ -15,4 +15,14 @@
 
 <!-- wp:pattern {"slug":"byahe/pricing-plans"} /-->
 
+<!-- wp:pattern {"slug":"byahe/pricing-fees"} /-->
+
+<!-- wp:pattern {"slug":"byahe/pricing-compare"} /-->
+
+<!-- wp:pattern {"slug":"byahe/pricing-faq"} /-->
+
+<!-- wp:separator {"className":"is-style-stripe"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-stripe"/>
+<!-- /wp:separator -->
+
 <!-- wp:pattern {"slug":"byahe/cta-band"} /-->

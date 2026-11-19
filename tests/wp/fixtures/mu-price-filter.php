@@ -19,6 +19,7 @@ add_filter(
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- test fixture.
 		if ( isset( $_GET['byahe_test_price'] ) ) {
 			$pricing['tiers']['negosyo']['monthly'] = 555;
+			$pricing['fees'][0]['fee']              = '0.5%';
 		}
 		return $pricing;
 	}

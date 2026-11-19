@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "byahe/fee-table",
+	"title": "BYAHE fee table",
+	"category": "widgets",
+	"icon": "editor-table",
+	"description": "Transaction fees from the BYAHE pricing data, as an accessible table.",
+	"keywords": [ "byahe", "fees", "pricing" ],
+	"textdomain": "byahe-core",
+	"attributes": {
+		"caption": {
+			"type": "string",
+			"default": "Transaction fees"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

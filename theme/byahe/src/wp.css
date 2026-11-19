@@ -5,6 +5,14 @@
  */
 
 /* ---------- Base ---------- */
+
+/* The prototype got border-box sizing from Tailwind preflight. */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 h1,
  h2 {
 	font-synthesis: none;
