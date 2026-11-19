@@ -245,3 +245,16 @@ p.is-style-pill {
 .tier__price > :where(p) {
 	margin: 0;
 }
+
+/* Hidden until its script runs (the prototype used a .js class instead). */
+.billing-toggle:not([hidden]) {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	align-items: center;
+}
+
+
+.demo-dialog > :where(p) {
+	margin: 0;
+}

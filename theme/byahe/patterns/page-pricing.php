@@ -11,8 +11,8 @@
  */
 
 ?>
-<!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading"><?php esc_html_e( 'Pricing', 'byahe' ); ?></h1>
-<!-- /wp:heading -->
+<!-- wp:pattern {"slug":"byahe/pricing-hero"} /-->
+
+<!-- wp:pattern {"slug":"byahe/pricing-plans"} /-->
 
 <!-- wp:pattern {"slug":"byahe/cta-band"} /-->

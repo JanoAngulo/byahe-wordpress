@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "byahe/pricing-toggle",
+	"title": "BYAHE billing toggle",
+	"category": "widgets",
+	"icon": "update",
+	"description": "Monthly / yearly switch for the pricing cards on the same page.",
+	"keywords": [ "byahe", "pricing", "yearly" ],
+	"textdomain": "byahe-core",
+	"supports": {
+		"html": false,
+		"interactivity": true
+	},
+	"editorScript": "file:./index.js",
+	"viewScriptModule": "file:./view.js",
+	"render": "file:./render.php"
+}

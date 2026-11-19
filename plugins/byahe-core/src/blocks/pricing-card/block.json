@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "byahe/pricing-card",
+	"title": "BYAHE pricing card",
+	"category": "widgets",
+	"icon": "money-alt",
+	"description": "One plan card. Name, price and period come from the BYAHE pricing data; the description, list and button are editable.",
+	"keywords": [ "byahe", "pricing", "plan", "tier" ],
+	"textdomain": "byahe-core",
+	"attributes": {
+		"tier": {
+			"type": "string",
+			"enum": [ "libre", "negosyo", "pro", "enterprise" ],
+			"default": "libre"
+		},
+		"featured": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"interactivity": true
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

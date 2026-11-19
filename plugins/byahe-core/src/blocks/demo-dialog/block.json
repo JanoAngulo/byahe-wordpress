@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "byahe/demo-dialog",
+	"title": "BYAHE demo notice dialog",
+	"category": "widgets",
+	"icon": "info",
+	"description": "A dialog saying BYAHE is a demo company. Buttons with the class opens-demo-dialog on the same page open it; without JavaScript they follow their own link.",
+	"keywords": [ "byahe", "dialog", "demo" ],
+	"textdomain": "byahe-core",
+	"supports": {
+		"html": false,
+		"multiple": false
+	},
+	"editorScript": "file:./index.js",
+	"viewScriptModule": "file:./view.js",
+	"render": "file:./render.php"
+}
