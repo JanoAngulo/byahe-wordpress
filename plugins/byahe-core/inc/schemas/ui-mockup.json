@@ -1,0 +1,679 @@
+{
+	"invoice": {
+		"label": "Invoice editor",
+		"fields": {
+			"number": {
+				"label": "Invoice no.",
+				"default": "INV-0143"
+			},
+			"status": {
+				"label": "Status",
+				"default": "Draft"
+			},
+			"billTo": {
+				"label": "Bill to",
+				"default": "Lakbay Prints"
+			},
+			"due": {
+				"label": "Due",
+				"default": "Nov 30, 2026"
+			},
+			"subtotal": {
+				"label": "Subtotal",
+				"default": "₱24,000"
+			},
+			"vatLabel": {
+				"label": "VAT label",
+				"default": "VAT 12%"
+			},
+			"vat": {
+				"label": "VAT",
+				"default": "₱2,880"
+			},
+			"total": {
+				"label": "Total",
+				"default": "₱26,880"
+			},
+			"summary": {
+				"label": "Screen reader summary (update when you change figures)",
+				"default": "Invoice editor: invoice INV-0143 to Lakbay Prints, three line items, subtotal ₱24,000, 12% VAT ₱2,880, total ₱26,880, ready to send by SMS or email."
+			}
+		},
+		"lists": {
+			"lines": {
+				"label": "Line items",
+				"columns": {
+					"qty": {
+						"label": "Qty"
+					},
+					"item": {
+						"label": "Item"
+					},
+					"amount": {
+						"label": "Amount"
+					}
+				},
+				"default": [
+					{
+						"qty": "2×",
+						"item": "Tarpaulin, 3×6 ft",
+						"amount": "₱3,000"
+					},
+					{
+						"qty": "1×",
+						"item": "Menu board design",
+						"amount": "₱12,500"
+					},
+					{
+						"qty": "5×",
+						"item": "Sticker sheets",
+						"amount": "₱8,500"
+					}
+				]
+			}
+		},
+		"ariaLabel": "{summary}"
+	},
+	"payment-qr": {
+		"label": "Payment link with QR",
+		"fields": {
+			"qrLabel": {
+				"label": "QR caption",
+				"default": "Scan with any bank app"
+			},
+			"payee": {
+				"label": "Pay line",
+				"default": "Pay Kape't Tinapay Co."
+			},
+			"amount": {
+				"label": "Amount",
+				"default": "₱1,250"
+			},
+			"order": {
+				"label": "Order no.",
+				"default": "0928"
+			},
+			"orderDesc": {
+				"label": "Order description",
+				"default": "2 cold brews and ensaymada"
+			},
+			"summary": {
+				"label": "Screen reader summary (update when you change figures)",
+				"default": "Payment link for Kape't Tinapay Co.: ₱1,250 for order 0928, with a QR Ph code to scan and four ways to pay: QR Ph, card, InstaPay and e-wallet."
+			}
+		},
+		"lists": {
+			"methods": {
+				"label": "Payment methods",
+				"columns": {
+					"name": {
+						"label": "Method"
+					}
+				},
+				"default": [
+					{
+						"name": "QR Ph"
+					},
+					{
+						"name": "Card"
+					},
+					{
+						"name": "InstaPay"
+					},
+					{
+						"name": "E-wallet"
+					}
+				]
+			}
+		},
+		"ariaLabel": "{summary}"
+	},
+	"reminders": {
+		"label": "Reminder timeline",
+		"fields": {
+			"number": {
+				"label": "Invoice no.",
+				"default": "INV-0139"
+			},
+			"status": {
+				"label": "Status",
+				"default": "Paid"
+			},
+			"summary": {
+				"label": "Screen reader summary (update when you change figures)",
+				"default": "Reminder timeline for invoice INV-0139 to Studio Bahaghari: sent November 3, friendly reminder November 12, due-date reminder November 15, paid November 15 at 4:12 PM."
+			}
+		},
+		"lists": {
+			"steps": {
+				"label": "Timeline",
+				"columns": {
+					"state": {
+						"label": "State",
+						"options": [
+							"done",
+							"paid"
+						]
+					},
+					"title": {
+						"label": "What happened"
+					},
+					"when": {
+						"label": "When"
+					}
+				},
+				"default": [
+					{
+						"state": "done",
+						"title": "Invoice sent by SMS",
+						"when": "Nov 3"
+					},
+					{
+						"state": "done",
+						"title": "“Due in 3 days” reminder",
+						"when": "Nov 12, sent automatically"
+					},
+					{
+						"state": "done",
+						"title": "“Due today” reminder",
+						"when": "Nov 15, 9:00 AM"
+					},
+					{
+						"state": "paid",
+						"title": "Paid by InstaPay, ₱45,000",
+						"when": "Nov 15, 4:12 PM"
+					}
+				]
+			}
+		},
+		"ariaLabel": "{summary}"
+	},
+	"cashflow-chart": {
+		"label": "Cash-flow chart",
+		"fields": {
+			"title": {
+				"label": "Title",
+				"default": "Cash flow"
+			},
+			"period": {
+				"label": "Period",
+				"default": "Last 6 months"
+			},
+			"expected": {
+				"label": "Expected this week",
+				"default": "₱64,200"
+			},
+			"overdue": {
+				"label": "Overdue invoices",
+				"default": "3"
+			},
+			"summary": {
+				"label": "Screen reader summary (update when you change figures)",
+				"default": "Cash-flow chart, June to November: money in grew from ₱210,000 to ₱482,000 while money out stayed near ₱180,000. ₱64,200 expected this week, 3 invoices overdue."
+			}
+		},
+		"lists": {
+			"months": {
+				"label": "Months",
+				"columns": {
+					"month": {
+						"label": "Month"
+					},
+					"in": {
+						"label": "Money in (% height)"
+					},
+					"out": {
+						"label": "Money out (% height)"
+					}
+				},
+				"default": [
+					{
+						"month": "Jun",
+						"in": "44",
+						"out": "36"
+					},
+					{
+						"month": "Jul",
+						"in": "52",
+						"out": "38"
+					},
+					{
+						"month": "Aug",
+						"in": "48",
+						"out": "40"
+					},
+					{
+						"month": "Sep",
+						"in": "66",
+						"out": "37"
+					},
+					{
+						"month": "Oct",
+						"in": "74",
+						"out": "39"
+					},
+					{
+						"month": "Nov",
+						"in": "96",
+						"out": "41"
+					}
+				]
+			}
+		},
+		"ariaLabel": "{summary}"
+	},
+	"bir-receipt": {
+		"label": "BIR-ready receipt",
+		"fields": {
+			"number": {
+				"label": "Receipt no.",
+				"default": "OR-2026-01842"
+			},
+			"status": {
+				"label": "Status",
+				"default": "Sent"
+			},
+			"business": {
+				"label": "Business",
+				"default": "Kape't Tinapay Co."
+			},
+			"address": {
+				"label": "Address",
+				"default": "Malolos, Bulacan"
+			},
+			"tin": {
+				"label": "TIN",
+				"default": "000-000-000-000"
+			},
+			"date": {
+				"label": "Date",
+				"default": "Nov 15, 2026"
+			},
+			"paidBy": {
+				"label": "Paid by",
+				"default": "QR Ph"
+			},
+			"vatable": {
+				"label": "VATable sales",
+				"default": "₱1,116.07"
+			},
+			"vat": {
+				"label": "VAT 12%",
+				"default": "₱133.93"
+			},
+			"total": {
+				"label": "Total",
+				"default": "₱1,250.00"
+			},
+			"note": {
+				"label": "Footer note",
+				"default": "Demo receipt. Not a valid BIR document."
+			},
+			"summary": {
+				"label": "Screen reader summary (update when you change figures)",
+				"default": "Demo receipt OR-2026-01842 from Kape't Tinapay Co. for ₱1,250 paid by QR Ph, with TIN and VAT breakdown, labelled not a valid BIR document. BYAHE emailed it to the customer, added it to the November sales summary and recorded ₱133.93 VAT."
+			}
+		},
+		"lists": {
+			"checklist": {
+				"label": "What BYAHE did",
+				"columns": {
+					"title": {
+						"label": "Step"
+					},
+					"detail": {
+						"label": "Detail"
+					}
+				},
+				"default": [
+					{
+						"title": "Emailed to customer",
+						"detail": "Nov 15, 4:12 PM"
+					},
+					{
+						"title": "Added to November sales summary",
+						"detail": "142 receipts so far"
+					},
+					{
+						"title": "VAT recorded",
+						"detail": "₱133.93 output VAT"
+					}
+				]
+			}
+		},
+		"ariaLabel": "{summary}"
+	},
+	"team-roles": {
+		"label": "Team roles",
+		"fields": {
+			"title": {
+				"label": "Title",
+				"default": "Team"
+			},
+			"button": {
+				"label": "Button",
+				"default": "Invite"
+			},
+			"summary": {
+				"label": "Screen reader summary (update when you change figures)",
+				"default": "Team settings with three members: Maricel Reyes as owner with full access, Jun dela Cruz as cashier who can take payments, and Ana Santos as bookkeeper who can view reports and export."
+			}
+		},
+		"lists": {
+			"members": {
+				"label": "Members",
+				"columns": {
+					"initials": {
+						"label": "Initials"
+					},
+					"name": {
+						"label": "Name"
+					},
+					"access": {
+						"label": "Access"
+					},
+					"role": {
+						"label": "Role",
+						"options": [
+							"Owner",
+							"Cashier",
+							"Bookkeeper"
+						]
+					}
+				},
+				"default": [
+					{
+						"initials": "MR",
+						"name": "Maricel Reyes",
+						"access": "Everything",
+						"role": "Owner"
+					},
+					{
+						"initials": "JC",
+						"name": "Jun dela Cruz",
+						"access": "Take payments, send invoices",
+						"role": "Cashier"
+					},
+					{
+						"initials": "AS",
+						"name": "Ana Santos",
+						"access": "View reports, export",
+						"role": "Bookkeeper"
+					}
+				]
+			}
+		},
+		"ariaLabel": "{summary}"
+	},
+	"pos-sales": {
+		"label": "Counter sales",
+		"fields": {
+			"title": {
+				"label": "Title",
+				"default": "Today at the counter"
+			},
+			"status": {
+				"label": "Status",
+				"default": "Open"
+			},
+			"sales": {
+				"label": "Sales today",
+				"default": "₱12,940"
+			},
+			"payments": {
+				"label": "Payments",
+				"default": "86"
+			},
+			"credit": {
+				"label": "Suki credit owed",
+				"default": "₱1,860"
+			},
+			"creditCustomers": {
+				"label": "Credit customers",
+				"default": "7"
+			},
+			"summary": {
+				"label": "Screen reader summary (update when you change figures)",
+				"default": "Counter sales for today: ₱12,940 from 86 payments, ₱1,860 owed as suki credit. Latest payments: ₱240 and ₱85 by QR Ph, and Aling Rosa settled ₱340 of credit."
+			}
+		},
+		"lists": {
+			"lines": {
+				"label": "Latest payments",
+				"columns": {
+					"time": {
+						"label": "Time"
+					},
+					"label": {
+						"label": "Payment"
+					},
+					"amount": {
+						"label": "Amount"
+					}
+				},
+				"default": [
+					{
+						"time": "4:52",
+						"label": "QR Ph",
+						"amount": "₱240"
+					},
+					{
+						"time": "4:47",
+						"label": "QR Ph",
+						"amount": "₱85"
+					},
+					{
+						"time": "4:31",
+						"label": "Aling Rosa, credit paid",
+						"amount": "₱340"
+					}
+				]
+			}
+		},
+		"ariaLabel": "{summary}"
+	},
+	"menu-orders": {
+		"label": "Café orders",
+		"fields": {
+			"title": {
+				"label": "Title",
+				"default": "Open orders"
+			},
+			"tables": {
+				"label": "Open tables",
+				"default": "3"
+			},
+			"qr": {
+				"label": "By QR Ph",
+				"default": "₱18,420"
+			},
+			"card": {
+				"label": "By card",
+				"default": "₱6,300"
+			},
+			"summary": {
+				"label": "Screen reader summary (update when you change figures)",
+				"default": "Open orders at a café: Table 3 paid ₱1,240 by QR, Table 5 waiting on ₱860, takeout order 18 paid ₱420. Today so far: ₱18,420 by QR Ph and ₱6,300 by card."
+			}
+		},
+		"lists": {
+			"orders": {
+				"label": "Orders",
+				"columns": {
+					"name": {
+						"label": "Order"
+					},
+					"items": {
+						"label": "Items"
+					},
+					"amount": {
+						"label": "Amount"
+					},
+					"status": {
+						"label": "Status",
+						"options": [
+							"Paid",
+							"Pending",
+							"Overdue"
+						]
+					}
+				},
+				"default": [
+					{
+						"name": "Table 3",
+						"items": "4",
+						"amount": "₱1,240",
+						"status": "Paid"
+					},
+					{
+						"name": "Table 5",
+						"items": "3",
+						"amount": "₱860",
+						"status": "Pending"
+					},
+					{
+						"name": "Takeout #18",
+						"items": "2",
+						"amount": "₱420",
+						"status": "Paid"
+					}
+				]
+			}
+		},
+		"ariaLabel": "{summary}"
+	},
+	"retainer-invoice": {
+		"label": "Retainer invoice",
+		"fields": {
+			"title": {
+				"label": "Title",
+				"default": "Retainer, Lakbay Prints"
+			},
+			"status": {
+				"label": "Status",
+				"default": "Active"
+			},
+			"amount": {
+				"label": "Every month",
+				"default": "₱45,000"
+			},
+			"sendsOn": {
+				"label": "Sends on",
+				"default": "The 1st, automatically"
+			},
+			"next": {
+				"label": "Next invoice",
+				"default": "Dec 1, 2026"
+			},
+			"subhead": {
+				"label": "Milestones heading",
+				"default": "Project milestones"
+			},
+			"summary": {
+				"label": "Screen reader summary (update when you change figures)",
+				"default": "Recurring invoice to Lakbay Prints: ₱45,000 monthly retainer, sent on the 1st of every month, next on December 1. Milestones: brand kit ₱20,000 paid, website ₱60,000 with deposit paid, launch ₱15,000 pending."
+			}
+		},
+		"lists": {
+			"milestones": {
+				"label": "Milestones",
+				"columns": {
+					"name": {
+						"label": "Milestone"
+					},
+					"amount": {
+						"label": "Amount"
+					},
+					"status": {
+						"label": "Status",
+						"options": [
+							"Paid",
+							"Pending",
+							"Overdue"
+						]
+					}
+				},
+				"default": [
+					{
+						"name": "Brand kit",
+						"amount": "₱20,000",
+						"status": "Paid"
+					},
+					{
+						"name": "Website, 50% deposit",
+						"amount": "₱30,000",
+						"status": "Paid"
+					},
+					{
+						"name": "Launch",
+						"amount": "₱15,000",
+						"status": "Pending"
+					}
+				]
+			}
+		},
+		"ariaLabel": "{summary}"
+	},
+	"order-links": {
+		"label": "Orders from chat",
+		"fields": {
+			"title": {
+				"label": "Title",
+				"default": "Orders from chat"
+			},
+			"button": {
+				"label": "Button",
+				"default": "New link"
+			},
+			"summary": {
+				"label": "Screen reader summary (update when you change figures)",
+				"default": "Orders taken in chat with a payment link each: order 1042 bouquet ₱1,650 paid, order 1043 succulent set ₱650 link sent, order 1044 ribbon add-on ₱120 link expired."
+			}
+		},
+		"lists": {
+			"orders": {
+				"label": "Orders",
+				"columns": {
+					"number": {
+						"label": "Order no."
+					},
+					"item": {
+						"label": "Item"
+					},
+					"amount": {
+						"label": "Amount"
+					},
+					"status": {
+						"label": "Status",
+						"options": [
+							"Paid",
+							"Link sent",
+							"Expired"
+						]
+					}
+				},
+				"default": [
+					{
+						"number": "#1042",
+						"item": "Bouquet, large",
+						"amount": "₱1,650",
+						"status": "Paid"
+					},
+					{
+						"number": "#1043",
+						"item": "Succulent set",
+						"amount": "₱650",
+						"status": "Link sent"
+					},
+					{
+						"number": "#1044",
+						"item": "Ribbon add-on",
+						"amount": "₱120",
+						"status": "Expired"
+					}
+				]
+			}
+		},
+		"ariaLabel": "{summary}"
+	}
+}

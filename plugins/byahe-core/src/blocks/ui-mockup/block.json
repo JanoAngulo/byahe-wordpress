@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "byahe/ui-mockup",
+	"title": "BYAHE UI mockup",
+	"category": "widgets",
+	"icon": "layout",
+	"description": "A live HTML mockup of a BYAHE screen: invoice, payment QR, reminders, cash flow, receipt, team and more. Every figure is editable.",
+	"keywords": [ "byahe", "mockup", "screenshot" ],
+	"textdomain": "byahe-core",
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"default": "invoice"
+		},
+		"values": {
+			"type": "object",
+			"default": {}
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

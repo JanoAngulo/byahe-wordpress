@@ -104,3 +104,24 @@ function aria_label( array $schema, array $fields, array $lists ): string {
 
 	return trim( (string) preg_replace( '/\s+/', ' ', strtr( $template, $replacements ) ) );
 }
+
+/**
+ * Pill colour class for a status word in a mockup.
+ *
+ * @param string $status Status text, e.g. Paid, Pending, Overdue.
+ */
+function pill_class( string $status ): string {
+	$map = array(
+		'paid'      => 'pill-paid',
+		'sent'      => 'pill-paid',
+		'open'      => 'pill-paid',
+		'active'    => 'pill-paid',
+		'overdue'   => 'pill-overdue',
+		'expired'   => 'pill-overdue',
+		'failed'    => 'pill-overdue',
+		'pending'   => 'pill-pending',
+		'draft'     => 'pill-pending',
+		'link sent' => 'pill-pending',
+	);
+	return $map[ strtolower( trim( $status ) ) ] ?? 'pill-pending';
+}
