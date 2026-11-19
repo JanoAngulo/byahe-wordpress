@@ -11,8 +11,28 @@
  */
 
 ?>
-<!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading"><?php esc_html_e( 'Product', 'byahe' ); ?></h1>
-<!-- /wp:heading -->
+<!-- wp:pattern {"slug":"byahe/product-hero"} /-->
+
+<!-- wp:separator {"className":"is-style-stripe"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-stripe"/>
+<!-- /wp:separator -->
+
+<!-- wp:pattern {"slug":"byahe/product-invoicing"} /-->
+
+<!-- wp:pattern {"slug":"byahe/product-payment-links"} /-->
+
+<!-- wp:pattern {"slug":"byahe/product-reminders"} /-->
+
+<!-- wp:pattern {"slug":"byahe/product-cash-flow"} /-->
+
+<!-- wp:pattern {"slug":"byahe/product-bir-receipts"} /-->
+
+<!-- wp:pattern {"slug":"byahe/product-team-access"} /-->
+
+<!-- wp:pattern {"slug":"byahe/product-integrations"} /-->
+
+<!-- wp:separator {"className":"is-style-stripe"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-stripe"/>
+<!-- /wp:separator -->
 
 <!-- wp:pattern {"slug":"byahe/cta-band"} /-->
