@@ -10,7 +10,15 @@ namespace Byahe\Core;
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Yearly billing charges ten months: two months free.
+ */
+const YEARLY_MONTHS = 10;
+
+/**
  * Tier and fee data for the fictional plans.
+ *
+ * A tier's yearly price is its monthly price times YEARLY_MONTHS unless the
+ * data (or the filter) sets `yearly` itself, so one monthly edit moves both.
  *
  * @return array{tiers: array<string, array{name: string, monthly: ?int, yearly: ?int, label: ?string, period_monthly: string, period_yearly: string, badge: ?string}>, fees: list<array{method: string, fee: string}>}
  */
@@ -23,7 +31,6 @@ function pricing(): array {
 			'libre'      => array(
 				'name'           => __( 'Libre', 'byahe-core' ),
 				'monthly'        => 0,
-				'yearly'         => 0,
 				'label'          => null,
 				'period_monthly' => __( 'forever', 'byahe-core' ),
 				'period_yearly'  => __( 'forever', 'byahe-core' ),
@@ -32,7 +39,6 @@ function pricing(): array {
 			'negosyo'    => array(
 				'name'           => __( 'Negosyo', 'byahe-core' ),
 				'monthly'        => 499,
-				'yearly'         => 4990,
 				'label'          => null,
 				'period_monthly' => $per_month,
 				'period_yearly'  => $per_year,
@@ -41,7 +47,6 @@ function pricing(): array {
 			'pro'        => array(
 				'name'           => __( 'Pro', 'byahe-core' ),
 				'monthly'        => 1499,
-				'yearly'         => 14990,
 				'label'          => null,
 				'period_monthly' => $per_month,
 				'period_yearly'  => $per_year,
@@ -78,7 +83,14 @@ function pricing(): array {
 	 *
 	 * @param array $defaults Tier and fee data.
 	 */
-	return apply_filters( 'byahe_core_pricing', $defaults );
+	$pricing = apply_filters( 'byahe_core_pricing', $defaults );
+	foreach ( $pricing['tiers'] as &$tier ) {
+		if ( ! array_key_exists( 'yearly', $tier ) ) {
+			$tier['yearly'] = is_int( $tier['monthly'] ) ? $tier['monthly'] * YEARLY_MONTHS : null;
+		}
+	}
+	unset( $tier );
+	return $pricing;
 }
 
 /**

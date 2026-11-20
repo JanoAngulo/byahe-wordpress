@@ -35,3 +35,9 @@ test('unknown tiers and fields return an empty string', async ({ request }) => {
 test('the pricing filter changes the price', async ({ request }) => {
   expect(await field(request, { tier: 'negosyo', field: 'price', byahe_test_price: '1' })).toBe('₱555');
 });
+
+test('a monthly price edit also moves the yearly price (ten months, two free)', async ({ request }) => {
+  expect(await field(request, { tier: 'negosyo', field: 'price', billing: 'yearly', byahe_test_price: '1' })).toBe('₱5,550');
+  expect(await field(request, { tier: 'enterprise', field: 'price', billing: 'yearly' })).toBe("Let's talk");
+  expect(await field(request, { tier: 'libre', field: 'price', billing: 'yearly' })).toBe('₱0');
+});
