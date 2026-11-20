@@ -1,0 +1,50 @@
+name: Release demo build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-demo
+  cancel-in-progress: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: npm
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+
+      - name: Install
+        run: |
+          npm ci
+          composer install --no-interaction --no-progress
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build:wp
+
+      - name: Zip theme and plugin
+        run: npm run package:wp
+
+      - name: Publish to the demo-latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view demo-latest || gh release create demo-latest --title "Demo build" --notes "Rolling build used by the Playground demo." --prerelease
+          gh release upload demo-latest dist/zips/byahe-theme.zip dist/zips/byahe-core.zip --clobber
