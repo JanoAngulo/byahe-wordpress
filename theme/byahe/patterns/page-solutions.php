@@ -11,8 +11,18 @@
  */
 
 ?>
-<!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading"><?php esc_html_e( 'Solutions', 'byahe' ); ?></h1>
-<!-- /wp:heading -->
+<!-- wp:pattern {"slug":"byahe/solutions-hero"} /-->
+
+<!-- wp:pattern {"slug":"byahe/solutions-retail"} /-->
+
+<!-- wp:pattern {"slug":"byahe/solutions-food"} /-->
+
+<!-- wp:pattern {"slug":"byahe/solutions-freelancers"} /-->
+
+<!-- wp:pattern {"slug":"byahe/solutions-online-sellers"} /-->
+
+<!-- wp:separator {"className":"is-style-stripe"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-stripe"/>
+<!-- /wp:separator -->
 
 <!-- wp:pattern {"slug":"byahe/cta-band"} /-->

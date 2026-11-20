@@ -29,9 +29,11 @@ function block_attrs( array $attrs ): string {
  *     @type string $id      Section id (anchor).
  *     @type string $bg      Background: yellow or cream.
  *     @type string $title   Heading (h2).
- *     @type string $lead    Lead paragraph.
+ *     @type string $lead    Optional lead paragraph.
+ *     @type string $pain    Optional pain point, shown after "The headache:".
  *     @type array  $bullets Benefit bullets.
  *     @type string $media   Block markup for the other column.
+ *     @type string $media_class Optional class names on the media column.
  *     @type bool   $reverse Put the media first on desktop.
  *     @type bool   $last    Drop the bottom border.
  *     @type string $note    Optional small print under the bullets.
@@ -43,19 +45,22 @@ function feature_section( array $args ): string {
 	$args = wp_parse_args(
 		$args,
 		array(
-			'bg'      => 'cream',
-			'bullets' => array(),
-			'reverse' => false,
-			'last'    => false,
-			'note'    => '',
-			'quote'   => array(),
+			'bg'          => 'cream',
+			'lead'        => '',
+			'pain'        => '',
+			'bullets'     => array(),
+			'media_class' => '',
+			'reverse'     => false,
+			'last'        => false,
+			'note'        => '',
+			'quote'       => array(),
 		)
 	);
 
 	$id           = sanitize_html_class( $args['id'] );
 	$section_cls  = 'bg-' . sanitize_html_class( $args['bg'] ) . ( $args['last'] ? '' : ' border-b-2 border-navy' ) . ' scroll-mt-4';
 	$text_cls     = $args['reverse'] ? 'lg:order-2' : '';
-	$media_cls    = $args['reverse'] ? 'lg:order-1' : '';
+	$media_cls    = trim( $args['media_class'] . ( $args['reverse'] ? ' lg:order-1' : '' ) );
 	$text_attrs   = array( 'layout' => array( 'type' => 'default' ) ) + ( $text_cls ? array( 'className' => $text_cls ) : array() );
 	$media_attrs  = array( 'layout' => array( 'type' => 'default' ) ) + ( $media_cls ? array( 'className' => $media_cls ) : array() );
 	$text_class   = trim( 'wp-block-group ' . $text_cls );
@@ -88,9 +93,18 @@ function feature_section( array $args ): string {
 <h2 class="wp-block-heading m-0 text-4xl" id="<?php echo esc_attr( $id . '-title' ); ?>"><?php echo esc_html( $args['title'] ); ?></h2>
 <!-- /wp:heading -->
 
+	<?php if ( $args['lead'] ) : ?>
+
 <!-- wp:paragraph {"className":"mt-4 mb-0 max-w-[36rem] text-lg"} -->
 <p class="mt-4 mb-0 max-w-[36rem] text-lg"><?php echo esc_html( $args['lead'] ); ?></p>
 <!-- /wp:paragraph -->
+	<?php endif; ?>
+	<?php if ( $args['pain'] ) : ?>
+
+<!-- wp:paragraph {"className":"pain"} -->
+<p class="pain"><strong><?php esc_html_e( 'The headache:', 'byahe' ); ?></strong> <?php echo esc_html( $args['pain'] ); ?></p>
+<!-- /wp:paragraph -->
+	<?php endif; ?>
 
 <!-- wp:list {"className":"benefits"} -->
 <ul class="wp-block-list benefits">
@@ -105,22 +119,22 @@ function feature_section( array $args ): string {
 	<?php endif; ?>
 	<?php if ( $args['quote'] ) : ?>
 
-<!-- wp:group {"tagName":"figure","className":"mini-quote","layout":{"type":"default"}} -->
-<figure class="wp-block-group mini-quote">
-<!-- wp:quote {"className":"m-0"} -->
-<blockquote class="wp-block-quote m-0"><!-- wp:paragraph {"className":"m-0"} -->
-<p class="m-0"><?php echo esc_html( $args['quote']['text'] ); ?></p>
+<!-- wp:group {"tagName":"figure","className":"quote","layout":{"type":"default"}} -->
+<figure class="wp-block-group quote">
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p><?php echo esc_html( $args['quote']['text'] ); ?></p>
 <!-- /wp:paragraph --></blockquote>
 <!-- /wp:quote -->
 
-<!-- wp:group {"tagName":"figcaption","className":"mini-quote__by","layout":{"type":"default"}} -->
-<figcaption class="wp-block-group mini-quote__by">
+<!-- wp:group {"tagName":"figcaption","layout":{"type":"default"}} -->
+<figcaption class="wp-block-group">
 <!-- wp:paragraph {"className":"avatar m-0"} -->
 <p class="avatar m-0"><?php echo esc_html( $args['quote']['initials'] ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"m-0"} -->
-<p class="m-0"><strong><?php echo esc_html( $args['quote']['name'] ); ?></strong><br><?php echo esc_html( $args['quote']['business'] ); ?></p>
+<p class="m-0"><strong class="block"><?php echo esc_html( $args['quote']['name'] ); ?></strong><?php echo esc_html( $args['quote']['business'] ); ?></p>
 <!-- /wp:paragraph -->
 </figcaption>
 <!-- /wp:group -->
