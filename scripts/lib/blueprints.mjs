@@ -9,7 +9,8 @@
  */
 
 const SCHEMA = 'https://playground.wordpress.net/blueprint-schema.json';
-const CORS_PROXY = 'https://playground.wordpress.net/cors-proxy.php?';
+// Playground's CORS proxy. It also routes GitHub's redirect to the signed asset URL through itself.
+const CORS_PROXY = 'https://wordpress-playground-cors-proxy.net/?';
 const ACTIVATE_STEPS = new Set(['activateTheme', 'activatePlugin']);
 
 const base = () => ({

@@ -6,7 +6,7 @@ import { buildBlueprints } from '../../scripts/lib/blueprints.mjs';
 const root = new URL('../../', import.meta.url);
 const steps = JSON.parse(readFileSync(new URL('blueprints/steps.json', root), 'utf8'));
 const opts = { repo: 'JanoAngulo/byahe-wordpress', tag: 'demo-latest' };
-const PROXY = 'https://playground.wordpress.net/cors-proxy.php?';
+const PROXY = 'https://wordpress-playground-cors-proxy.net/?';
 const RELEASE = 'https://github.com/JanoAngulo/byahe-wordpress/releases/download/demo-latest/';
 const SEED = (s) => s.step === 'wp-cli' && s.command === 'wp byahe seed';
 

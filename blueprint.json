@@ -11,7 +11,7 @@
       "step": "installTheme",
       "themeData": {
         "resource": "url",
-        "url": "https://playground.wordpress.net/cors-proxy.php?https://github.com/JanoAngulo/byahe-wordpress/releases/download/demo-latest/byahe-theme.zip"
+        "url": "https://wordpress-playground-cors-proxy.net/?https://github.com/JanoAngulo/byahe-wordpress/releases/download/demo-latest/byahe-theme.zip"
       },
       "options": {
         "activate": true
@@ -21,7 +21,7 @@
       "step": "installPlugin",
       "pluginData": {
         "resource": "url",
-        "url": "https://playground.wordpress.net/cors-proxy.php?https://github.com/JanoAngulo/byahe-wordpress/releases/download/demo-latest/byahe-core.zip"
+        "url": "https://wordpress-playground-cors-proxy.net/?https://github.com/JanoAngulo/byahe-wordpress/releases/download/demo-latest/byahe-core.zip"
       },
       "options": {
         "activate": true
