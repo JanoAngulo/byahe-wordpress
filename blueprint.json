@@ -1,0 +1,43 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/",
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "login": true,
+  "steps": [
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "url",
+        "url": "https://playground.wordpress.net/cors-proxy.php?https://github.com/JanoAngulo/byahe-wordpress/releases/download/demo-latest/byahe-theme.zip"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "url",
+        "url": "https://playground.wordpress.net/cors-proxy.php?https://github.com/JanoAngulo/byahe-wordpress/releases/download/demo-latest/byahe-core.zip"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "BYAHE",
+        "blogdescription": "Bayad na, tuloy ang byahe.",
+        "admin_email_lifespan": 4102444800
+      }
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp byahe seed"
+    }
+  ]
+}
