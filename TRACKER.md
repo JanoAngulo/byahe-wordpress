@@ -5,6 +5,8 @@ Built as static HTML + Tailwind CSS first, then converted into a custom WordPres
 
 > Demo company. Not a real financial service.
 
+**Live demo:** [open BYAHE in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/JanoAngulo/byahe-wordpress/main/blueprint.json). It installs the latest `demo-latest` release zips, seeds the five pages and logs you in.
+
 ---
 
 ## Decisions
@@ -34,7 +36,7 @@ Built as static HTML + Tailwind CSS first, then converted into a custom WordPres
 - [x] Tailwind build pipeline (Vite + Tailwind v4)
 - [x] Design tokens (`tokens/tokens.json` → Tailwind `@theme` + `theme.json`, contrast-checked)
 - [x] WordPress Playground running locally (`npm run dev:wp` → http://127.0.0.1:9400)
-- [ ] Playground blueprint (auto-installs theme, plugin, demo content)
+- [x] Playground blueprint (auto-installs theme, plugin, demo content)
 - [x] Git repo + `.gitignore`
 
 ---
@@ -68,8 +70,8 @@ Custom blocks for Phase 1:
 
 Demo delivery:
 
-- [ ] GitHub Action: build + publish theme/plugin zips to rolling release
-- [ ] Blueprint installs from release zips + imports demo content
+- [x] GitHub Action: build + publish theme/plugin zips to rolling release
+- [x] Blueprint installs from release zips + imports demo content
 
 ---
 
@@ -108,7 +110,7 @@ Blocks:
 - [x] PHPCS (WordPress Coding Standards) passing
 - [x] ESLint passing
 - [ ] GitHub Actions CI (lint on push)
-- [ ] README with one-command setup + Playground demo link
+- [x] README with one-command setup + Playground demo link
 - [x] "View the code on GitHub" links (footer, About, demo dialog) point at github.com/JanoAngulo/byahe-wordpress
 - [ ] 1–2 min screen recording of editing a page in WordPress
 - [ ] Add to portfolio (jrla1219.web.app) + LinkedIn
