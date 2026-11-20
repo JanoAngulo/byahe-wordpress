@@ -2,6 +2,7 @@
 /**
  * Title: Solutions page
  * Slug: byahe/page-solutions
+ * Description: How BYAHE works for sari-sari stores, cafés, freelancers and online sellers in the Philippines. BYAHE is a fictional company built as a portfolio project.
  * Categories: byahe
  * Block Types: core/post-content
  * Post Types: page

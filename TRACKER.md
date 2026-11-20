@@ -45,26 +45,26 @@ Each page: build HTML prototype → **John reviews & approves** → convert to W
 
 | Page | HTML prototype | John approved | WP template | Content | QA (a11y + Lighthouse) |
 |---|---|---|---|---|---|
-| Shared components | [x] | [x] | [ ] | — | [ ] |
-| Home | [x] | [x] | [ ] | [ ] | [ ] |
-| Product / Features | [x] | [x] | [ ] | [ ] | [ ] |
-| Pricing | [x] | [x] | [ ] | [ ] | [ ] |
-| Solutions (by business type) | [x] | [x] | [ ] | [ ] | [ ] |
-| About | [x] | [x] | [ ] | [ ] | [ ] |
+| Shared components | [x] | [x] | [x] | — | [x] |
+| Home | [x] | [x] | [x] | [x] | [x] |
+| Product / Features | [x] | [x] | [x] | [x] | [x] |
+| Pricing | [x] | [x] | [x] | [x] | [x] |
+| Solutions (by business type) | [x] | [x] | [x] | [x] | [x] |
+| About | [x] | [x] | [x] | [x] | [x] |
 
 Shared parts for Phase 1:
 
-- [ ] Header + navigation (mobile menu, keyboard accessible)
-- [ ] Footer (with "demo company" note)
-- [ ] Stripe divider, hard-shadow card, pill button components
-- [ ] "Sakay na →" CTA → Pricing Libre tier → "demo company" dialog
+- [x] Header + navigation (mobile menu, keyboard accessible)
+- [x] Footer (with "demo company" note)
+- [x] Stripe divider, hard-shadow card, pill button components
+- [x] "Sakay na →" CTA → Pricing Libre tier → "demo company" dialog
 
 Custom blocks for Phase 1:
 
-- [ ] `byahe/hero-dashboard` (dynamic, editable figures)
-- [ ] `byahe/pricing-toggle` + `byahe/pricing-card` (Interactivity API)
-- [ ] Pricing data via Block Bindings source `byahe/pricing`
-- [ ] `byahe/ui-mockup` with variants: invoice, payment-qr, reminders, cashflow-chart, bir-receipt, team-roles (+ Solutions variants)
+- [x] `byahe/hero-dashboard` (dynamic, editable figures)
+- [x] `byahe/pricing-toggle` + `byahe/pricing-card` (Interactivity API)
+- [x] Pricing data via Block Bindings source `byahe/pricing`
+- [x] `byahe/ui-mockup` with variants: invoice, payment-qr, reminders, cashflow-chart, bir-receipt, team-roles (+ Solutions variants)
 
 Demo delivery:
 
@@ -105,8 +105,8 @@ Blocks:
 - [ ] Case study page (brief → tokens → HTML → WordPress → results)
 - [x] Lighthouse scores recorded (prototype; see Notes)
 - [ ] axe accessibility audit, zero critical issues
-- [ ] PHPCS (WordPress Coding Standards) passing
-- [ ] ESLint passing
+- [x] PHPCS (WordPress Coding Standards) passing
+- [x] ESLint passing
 - [ ] GitHub Actions CI (lint on push)
 - [ ] README with one-command setup + Playground demo link
 - [x] "View the code on GitHub" links (footer, About, demo dialog) point at github.com/JanoAngulo/byahe-wordpress
@@ -134,6 +134,40 @@ What the first run caught, and the fixes:
 - Home performance was 88 (LCP 3.9 s). The hero photo shipped at 1782 px to a 376 px slot. Every photo now has 480, 800 and 1200 px WebP versions with `srcset` and `sizes`.
 - Best practices was 96 on every page because `/favicon.ico` returned 404. Added an SVG favicon.
 - Solutions CLS was 0.15. Inter loading late rewrapped the section links in the hero from three rows to two. Cubao Free and Inter (latin) are now preloaded.
+
+### WordPress scores
+
+Lighthouse 13.6, mobile preset, on the WordPress site served by `npm run serve:wp` (Playground CLI, PHP 8.2). Measured 2026-11-20. Targets: accessibility 100, best practices 95+, SEO 100.
+
+| Page | Accessibility | Best practices | SEO |
+|---|---|---|---|
+| Home | 100 | 100 | 100 |
+| Product | 100 | 100 | 100 |
+| Pricing | 100 | 100 | 100 |
+| Solutions | 100 | 100 | 100 |
+| About | 100 | 100 | 100 |
+
+Performance and server response are listed apart, because Playground runs PHP in WebAssembly and every page takes about 0.9–1.0 s to start sending HTML. A normal PHP host won't have that delay.
+
+| Page | Performance | Server response | FCP | LCP | TBT | CLS |
+|---|---|---|---|---|---|---|
+| Home | 86 | 949 ms | 1.7 s | 3.3 s | 270 ms | 0 |
+| Product | 82 | 886 ms | 1.4 s | 1.4 s | 740 ms | 0 |
+| Pricing | 99 | 930 ms | — | 1.4 s | — | 0 |
+| Solutions | 100 | 936 ms | — | 1.5 s | — | 0 |
+| About | 91 | 1004 ms | 1.5 s | 1.5 s | 340 ms | 0 |
+
+Beyond the slow server, `theme.css` and core's `style.min.css` block rendering (300–600 ms), and Product has the most blocking time.
+
+What the first WordPress run caught, and the fixes:
+
+- SEO was 92 on every page: no meta description. Each page pattern's `Description` header is now the page's excerpt, seeded by `wp byahe seed`, and the theme prints the excerpt as the meta description. Editors can change it in the page's Excerpt panel.
+- Saving a seeded page in the editor without changing anything changed the front end: patterns stored apostrophes as `&#039;`, which WordPress doesn't curl, but the editor saves them as plain `'`, which it does. The seed command now stores them the way the editor does, and `tests/wp/editor.spec.mjs` saves every page and compares the front end before and after.
+
+### Plan B deviations from the spec
+
+- Demo content comes from `wp byahe seed` (a plugin WP-CLI command that saves each theme page pattern as a real page), not from `content/demo.xml`. Saved content is real blocks, and URLs come out right for any site address Playground uses.
+- Photos ship inside the theme (`assets/images/`, copied at build time) and are placed with core Image blocks, not imported into the Media Library. A theme filter adds `srcset`, `sizes`, `width` and `height` from the 480/800/1200 px versions.
 
 ### Keyboard
 

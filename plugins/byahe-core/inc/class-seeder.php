@@ -69,12 +69,15 @@ class Seeder {
 	 * @return int Page id.
 	 */
 	private static function upsert_page( string $slug, string $title ): int {
+		$pattern = \WP_Block_Patterns_Registry::get_instance()->get_registered( 'byahe/page-' . $slug );
 		$postarr = array(
 			'post_type'    => 'page',
 			'post_status'  => 'publish',
 			'post_name'    => $slug,
 			'post_title'   => $title,
 			'post_content' => wp_slash( self::pattern_content( 'byahe/page-' . $slug ) ),
+			// The page pattern's description is the page's meta description.
+			'post_excerpt' => wp_slash( (string) ( $pattern['description'] ?? '' ) ),
 		);
 
 		$existing = get_page_by_path( $slug, OBJECT, 'page' );
@@ -90,6 +93,11 @@ class Seeder {
 	 * Block markup of a registered pattern with nested pattern references
 	 * resolved, or '' when the pattern doesn't exist.
 	 *
+	 * Patterns escape apostrophes as &#039; (esc_html), but the block editor
+	 * saves them as plain ' characters, which wptexturize then curls. Storing
+	 * them the editor's way keeps the front end identical before and after a
+	 * page is first saved in the editor.
+	 *
 	 * @param string $name Pattern name.
 	 */
 	private static function pattern_content( string $name ): string {
@@ -97,7 +105,7 @@ class Seeder {
 			return '';
 		}
 		$blocks = parse_blocks( sprintf( '<!-- wp:pattern {"slug":"%s"} /-->', $name ) );
-		return serialize_blocks( resolve_pattern_blocks( $blocks ) );
+		return str_replace( '&#039;', "'", serialize_blocks( resolve_pattern_blocks( $blocks ) ) );
 	}
 
 	/**

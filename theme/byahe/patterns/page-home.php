@@ -2,6 +2,7 @@
 /**
  * Title: Home page
  * Slug: byahe/page-home
+ * Description: Send invoices, get paid by QR Ph, card or bank transfer, and see your cash flow in one place. BYAHE is a fictional company built as a portfolio project.
  * Categories: byahe
  * Block Types: core/post-content
  * Post Types: page

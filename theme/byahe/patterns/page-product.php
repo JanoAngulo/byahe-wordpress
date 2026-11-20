@@ -2,6 +2,7 @@
 /**
  * Title: Product page
  * Slug: byahe/page-product
+ * Description: Invoicing, payment links and QR, automatic reminders, cash flow, BIR-ready receipts and team access, in one app for Philippine small businesses. BYAHE is a fictional company built as a portfolio project.
  * Categories: byahe
  * Block Types: core/post-content
  * Post Types: page

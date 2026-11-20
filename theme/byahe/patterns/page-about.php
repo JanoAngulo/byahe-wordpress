@@ -2,6 +2,7 @@
 /**
  * Title: About page
  * Slug: byahe/page-about
+ * Description: The story, mission and team behind BYAHE, a fictional Philippine fintech built as a portfolio project.
  * Categories: byahe
  * Block Types: core/post-content
  * Post Types: page

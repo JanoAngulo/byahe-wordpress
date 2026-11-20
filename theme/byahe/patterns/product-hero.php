@@ -27,7 +27,7 @@ $byahe_jumps = array(
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"mt-6 mb-0 max-w-[40rem] text-lg"} -->
-<p class="mt-6 mb-0 max-w-[40rem] text-lg"><?php esc_html_e( 'Six tools that take you from "here’s your bill" to money in the bank, built for how Filipino small businesses actually get paid.', 'byahe' ); ?></p>
+<p class="mt-6 mb-0 max-w-[40rem] text-lg"><?php esc_html_e( 'Six tools that take you from “here’s your bill” to money in the bank, built for how Filipino small businesses actually get paid.', 'byahe' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"tagName":"nav","ariaLabel":"<?php esc_attr_e( 'Jump to a feature', 'byahe' ); ?>","layout":{"type":"default"}} -->
