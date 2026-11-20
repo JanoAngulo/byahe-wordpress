@@ -16,6 +16,13 @@ defined( 'ABSPATH' ) || exit;
 class Seeder {
 
 	/**
+	 * Slugs the last seed() run skipped because their page pattern isn't registered.
+	 *
+	 * @var string[]
+	 */
+	public static array $skipped = array();
+
+	/**
 	 * Creates or updates the demo pages, sets the front page and pretty
 	 * permalinks, and removes WordPress's sample content. Safe to run again.
 	 *
@@ -41,8 +48,15 @@ class Seeder {
 			)
 		);
 
-		$ids = array();
+		$ids           = array();
+		self::$skipped = array();
 		foreach ( $pages as $slug => $title ) {
+			// Without its pattern (another theme active, say) the page would be
+			// saved empty, wiping whatever it holds. Leave it alone instead.
+			if ( ! \WP_Block_Patterns_Registry::get_instance()->is_registered( 'byahe/page-' . $slug ) ) {
+				self::$skipped[] = $slug;
+				continue;
+			}
 			$ids[ $slug ] = self::upsert_page( $slug, $title );
 		}
 

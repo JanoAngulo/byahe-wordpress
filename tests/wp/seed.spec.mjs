@@ -52,3 +52,20 @@ test('every page has the prototype meta description, kept in the page excerpt', 
     await expect(page.locator('meta[name="description"]'), key).toHaveAttribute('content', wanted);
   }
 });
+
+test('a missing page pattern skips that page instead of blanking it', async ({ request, browser, baseURL }) => {
+  const { adminContext, restNonce, pageId } = await import('./helpers.mjs');
+  const res = await request.post('/?rest_route=/byahe-test/v1/seed&drop=about');
+  expect(res.status()).toBe(200);
+  const ids = await res.json();
+  expect(ids.about, 'about is reported as skipped').toBeUndefined();
+  expect(ids.home).toBeGreaterThan(0);
+  const ctx = await adminContext(browser, baseURL);
+  const page = await ctx.newPage();
+  await page.goto('/wp-admin/');
+  const nonce = await restNonce(page);
+  const id = await pageId(page, 'about');
+  const raw = (await (await page.request.get(`/?rest_route=/wp/v2/pages/${id}&context=edit&_fields=content`, { headers: { 'X-WP-Nonce': nonce } })).json()).content.raw;
+  expect(raw).toContain('id="credits"');
+  await ctx.close();
+});

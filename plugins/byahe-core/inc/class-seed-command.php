@@ -25,7 +25,14 @@ class Seed_Command {
 	 *     wp byahe seed
 	 */
 	public function __invoke(): void {
-		foreach ( Seeder::seed() as $slug => $id ) {
+		$ids = Seeder::seed();
+		foreach ( Seeder::$skipped as $slug ) {
+			WP_CLI::warning( sprintf( 'Skipped the %1$s page: the byahe/page-%1$s pattern is not registered. Is the BYAHE theme active?', $slug ) );
+		}
+		if ( ! $ids ) {
+			WP_CLI::error( 'No pages seeded.' );
+		}
+		foreach ( $ids as $slug => $id ) {
 			if ( ! $id ) {
 				WP_CLI::error( sprintf( 'Could not save the %s page.', $slug ) );
 			}

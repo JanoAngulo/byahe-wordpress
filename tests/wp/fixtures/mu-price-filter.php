@@ -6,7 +6,8 @@
  *   so specs can prove one data edit reaches every place a price shows.
  * - `byahe-test/v1/field` exposes Byahe\Core\tier_field() for direct checks.
  * - `byahe-test/v1/seed` (POST) re-runs the demo seeder, so a reused dev
- *   server picks up pattern changes without a restart.
+ *   server picks up pattern changes without a restart. `drop=<slug>`
+ *   unregisters that page's pattern first, to test a missing pattern.
  *
  * @package ByaheTests
  */
@@ -52,7 +53,11 @@ add_action(
 			array(
 				'methods'             => 'POST',
 				'permission_callback' => '__return_true',
-				'callback'            => static function () {
+				'callback'            => static function ( WP_REST_Request $request ) {
+					$drop = sanitize_key( (string) $request->get_param( 'drop' ) );
+					if ( $drop ) {
+						unregister_block_pattern( 'byahe/page-' . $drop );
+					}
 					require_once BYAHE_CORE_DIR . '/inc/class-seeder.php';
 					return \Byahe\Core\Seeder::seed();
 				},
